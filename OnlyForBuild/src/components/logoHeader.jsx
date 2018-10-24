@@ -9,7 +9,7 @@ class LogoHeader extends React.Component {
     logoclicked()
     {
       safari.self.hide();
-      var newURL = "https://www.coupons.com/coupon-codes/";
+      var newURL = "https://couponswest.netpace.co/coupon-codes/";
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }
