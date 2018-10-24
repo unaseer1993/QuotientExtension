@@ -1,0 +1,17 @@
+ 
+.coupons{
+
+    font-size : 15px !important; 
+    font-weight: 400 !important;
+    line-height: 16px !important;
+    color: red !important;
+    margin: 2px 8px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* a.coupons:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+  */

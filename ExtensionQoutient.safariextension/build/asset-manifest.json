@@ -1,0 +1,8 @@
+{
+  "app.js": "app.js",
+  "app.js.map": "app.js.map",
+  "background.js": "background.js",
+  "background.js.map": "background.js.map",
+  "notifier.js": "notifier.js",
+  "notifier.js.map": "notifier.js.map"
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>Best Deals</title>
+</head>
+
+<body style="margin:0px;padding:0px">
+
+        <header class="dark-theme-header-static-pages">
+           
+        <div class="container">
+
+<a  onclick='logoClicked();'>
+            <img src="images/logo.png"  class="full-page-logo cursor">
+          </a>
+
+
+
+        </div>
+        
+
+    </header>
+
+
+    <div class="extension-container auto-width">
+    <div class="container">
+
+
+
+        <h1 class="pre-heading">
+            Preferences for the Coupons.com Shopping Assistant
+        </h1>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+      
+
+        <ul>
+            <li><input id="chkboxtick" type="checkbox" class="chkbox" onclick='handleClick(this);'> Donot display Activation Hover on the browser </li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+<script>
+
+//   <h4 class="signed-in" id="logouthtml">
+//             You are signed in as <span id="userEmail" class="as-user"></span> <a href="javascript:;" class="you-action" onclick='logout();' >Not you? Logout</a>
+//         </h4>
+
+// var s = document.getElementById('userEmail');
+// if(localStorage.getItem('userEmail')!==null)
+// {
+
+//   s.innerHTML = localStorage.getItem('userEmail');
+// }
+// else {
+// document.getElementById('logouthtml').innerHTML = "";
+// }
+
+if(localStorage.getItem('tick') !== null){
+
+if(localStorage.getItem('tick') == 1){
+
+  document.getElementById("chkboxtick").checked = true;
+}
+else if (localStorage.getItem('tick') == 0){
+
+    document.getElementById("chkboxtick").checked = false;
+}
+}
+//  function logout(){
+
+//   // localStorage.removeItem('userEmail');
+// safari.self.tab.dispatchMessage('logout');
+
+// }
+ function logoClicked(){
+window.open('https://www.coupons.com/coupon-codes/');
+}
+
+function handleClick(cb) {
+
+  if(cb.checked)
+  {
+    localStorage.setItem('tick',1);
+      safari.self.tab.dispatchMessage('chkbox',1);
+}
+else {
+  localStorage.setItem('tick',0);
+  safari.self.tab.dispatchMessage('chkbox',0);
+}
+}
+</script>
+
+</html>

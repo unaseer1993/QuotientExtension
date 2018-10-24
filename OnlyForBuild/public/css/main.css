@@ -1,0 +1,2068 @@
+
+
+/* HTML5 display-role reset for older browsers */
+.loading-wrapper{ position: relative;}
+
+.recent-item
+{
+  text-decoration: none;
+  
+}
+
+.wrapper_1 .top-close-btn {position: absolute; top: 10px;right: 10px;width: 9px;height: 9px;z-index: 2147483647;
+cursor: pointer;}
+
+
+.wrapper_1 {
+    background: #fff;
+border-radius: 4px;
+border-top-left-radius: 7px;
+border-bottom-left-radius: 7px;
+
+}
+  .cursor {cursor: pointer;}
+.data-saved {
+
+             color: #5bc3a2;
+             padding: 0px 15px 5px 0px;
+             border-radius: 4px;
+             display:block;
+             transition: all .3s ease-out;
+             clear: both;
+             opacity: 1;
+
+         }
+
+         .data-hide {opacity: 0;}
+
+         .search-result-flex-box-selected {
+             background: #65b518;
+             color: #fff;
+         }
+
+
+.loading-overlay {
+                /*background: #fff !important;
+                color: #444;
+                font-size: 16px;
+                left: 0%;
+                margin-left: 0px;
+                height: 100%;
+                width:100%;
+                opacity: 0.5 !important;
+                 position: absolute;
+                text-align: center;
+                top: 0%;
+                z-index: 99999999;*/
+background: transparent;
+                color: #444;
+                font-size: 16px;
+                left: 0;
+                 margin-left: -40px; 
+                position: absolute;
+                text-align: center;
+                top: 0;
+                z-index: 99999999;
+                bottom: 0;
+                margin: auto;
+                display: flex;
+                right: 0;
+                align-items: center;
+                align-content: center;
+                flex-direction: column;
+                justify-content: center;
+
+
+            }
+            
+
+.extension-container  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 'none';
+
+
+}
+
+
+.header-logo a {
+
+  outline: none !important;
+}
+
+
+
+.extension-container ol, .extension-container  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.disableOnFocus { display: none!important;}
+
+
+
+
+
+clearfix {
+    clear: both !important;
+}
+
+
+
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLightItalic.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLightItalic.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLightItalic.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLightItalic.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLightItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-BoldItalic.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-BoldItalic.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-BoldItalic.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-BoldItalic.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-CondensedBlack.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-CondensedBlack.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-CondensedBlack.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-CondensedBlack.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-CondensedBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Medium.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Medium.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Medium.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Medium.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Italic.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assehttps://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Italic.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Italic.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Italic.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Bold.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Bold.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Bold.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Bold.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLight.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLight.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLight.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLight.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-UltraLight.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Light.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Light.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Light.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Light.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-LightItalic.eot');
+    src: url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-LightItalic.eot?#iefix') format('embedded-opentype'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-LightItalic.woff2') format('woff2'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-LightItalic.woff') format('woff'), url('https://quotientmedia.blob.core.windows.net/quotient-web-assets/fonts/HelveticaNeue-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SpriteFont";
+    src: url('../fonts/v3/ci-font-icons-v3.eot?14hxsi');
+    src: url('../fonts/v3/ci-font-icons-v3.eot?14hxsi#iefix') format('embedded-opentype'), url('../fonts/v3/ci-font-icons-v3.ttf?14hxsi') format('truetype'), url('../fonts/v3/ci-font-icons-v3.woff?14hxsi') format('woff'), url('../fonts/v3/ci-font-icons-v3.svg?14hxsi#ci-font-icons-v3') format('svg');
+}
+
+
+
+.extension-container .wrapper_1 {    font-family: 'Helvetica Neue';}
+.extension-container {
+    width: 375px;
+    margin: 0 auto;
+    background: #fff;
+    font-family: 'Helvetica Neue';
+    height: auto;
+    border-bottom: 0px;
+}
+
+.extension-container header {
+    border-bottom: 1px solid #d0d0d0;
+    padding-bottom: 10px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.extension-container .section-heading h1 {
+    font-size: 22px;
+    color: #6AAF1E;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    text-align: center;
+}
+
+.extension-container .main-content {
+    padding: 10px;
+    height: 343px;
+    overflow-y: scroll;
+    font-family: 'Helvetica Neue';
+      position: relative;
+}
+
+.extension-container .search-box {
+    position: relative;
+    margin-top: 13px;
+    z-index: 10;
+
+}
+
+.extension-container .search-box .search{cursor: pointer;}
+.extension-container .header-logo {
+    text-align: center;
+}
+
+.extension-container .section-heading {
+    padding: 5px 0px 10px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .search-box input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    padding: 8px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .search-box .search  {
+  background: #65b518;
+padding: 0px 15px;
+border: 0px;
+position: absolute;
+top: 2px;
+right: 0;
+height: 31px;
+font-family: 'Helvetica Neue';
+}
+
+.extension-container .search-box .search span {
+    width: 18px;
+    height: 18px;
+    background-image: url(../images/search.png);
+    display: block;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: -2px;
+    bottom: 0;
+    margin: auto;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cashback-row {
+    display: flex;
+    text-align: center;
+    padding: 11px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    margin-top: 7px;
+    justify-content: space-around;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cashback-row div {
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cashback-row span:first-child {
+    font-size: 25px;
+    font-weight: bold;
+    display: block;
+    color: #6AAF1E;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cashback-row span:last-child {
+    color: #444444;
+    font-size: 13px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cash-back-product-row {
+    margin-bottom: 12px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cash-back-product {
+    display: flex;
+    border: 1px solid #dcdcdc;
+    margin-top: 8px;
+    align-items: center;
+    padding: 12px 20px 12px 10px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .product-logo {
+    text-align: center;
+    width: 94px;
+    height: 94px;
+    align-items: center;
+    align-content: center;
+    position: relative;
+}
+
+.extension-container .product-detail {
+    padding: 20px 20px 12px 20px;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-size: 16px;
+    /* font-weight: Bold; */
+    line-height: 16px;
+    color: #444;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .product-btn {
+    background: #6AAF1E;
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    padding: 6px 9px;
+    border-radius: 3px;
+    font-size: 13px;
+    width: 166px;
+    margin-top: 12px;
+    text-align: center;
+    white-space: pre;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container footer {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 17px 0px 0px;
+    border-top: 1px solid #d0d0d0;
+
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container footer a {
+    color: #a9aaaa;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container footer a img {
+    vertical-align: middle;
+    width: 21px;
+}
+
+.extension-container footer a {
+    width: 50%;
+    padding-bottom: 12px;
+    text-decoration: none;
+}
+
+.extension-container footer .selected {
+    position: relative;
+}
+
+.extension-container footer .selected:after {
+    border-bottom: 3px solid #0f99d8;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.extension-container .cashback-row-activated {
+    display: flex;
+    text-align: center;
+    padding: 9px 10px 8px;
+    border: 1px solid #ededee;
+    border-radius: 3px;
+    margin-top: 0px;
+    justify-content: space-between;
+    align-items: center;
+    color: #6AAF1E;
+    font-size: 16px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .inner-container {
+    padding: 0px 10px;
+}
+
+.extension-container .zero-padding {
+    padding: 10px 0px;
+}
+
+.extension-container .off-percent {
+    color: #0690b3;
+    font-size: 24px;
+    font-weight: 900;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .off-title {
+    color: #0690b3;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .exclusive {
+    background-color: #ecf8ff;
+    color: #444444;
+    font-size: 11px;
+    padding: 2px;
+    margin-top: 5px;
+    display: table;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 3px 7px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cash-back-deal .heading-detail {
+    /*padding: 0px 22px 0px 13px;*/
+    padding: 0px 5px 0px 13px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cash-back-percentage {
+ color: #6AAF1E;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 0px;
+    font-family: 'Helvetica Neue';
+    /* font-weight: bold; */
+}
+
+.extension-container .heading-detail .product-heading {
+    /*font-size: 16px;*/
+     font-size: 15px;
+    /* font-weight: Bold; */
+    color: #444;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 100%;
+    line-height: 19px;
+    margin-top: 10px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .heading-detail {
+    padding: 0px 22px 0px 12px;
+    flex: 1;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .cashback-bottom-content-row {    font-family: 'Helvetica Neue';}
+
+.extension-container .best-deal .product-detail {
+    padding: 0px 0px 5px 13px;
+    font-family: 'Helvetica Neue';
+    flex: 1;
+}
+
+.extension-container .cash-back-deal .product-logo {
+    text-align: center;
+    padding: 0px;
+    flex-basis: 94px;
+}
+
+.extension-container .border {
+    border: 1px solid #dcdcdc;
+}
+
+.extension-container .no-border {
+    border: 0px;
+}
+
+.extension-container .cashback-bottom-content-row {
+    display: flex;
+    /*justify-content: space-around;*/
+      justify-content: space-between;
+    padding:3px 10px 10px;
+    align-items: center;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .date {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 5px;
+    float: left;
+    position: relative;
+    padding-left: 20px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .day {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 5px;
+    float: left;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .click-save {
+    color: #46afdb;
+    font-size: 11px;
+    margin-top: 5px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .bottom-padding-zero {
+    padding-bottom: 0px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .date img {
+    vertical-align: middle;
+    position: absolute;
+    top: -3px;
+    left: 0px;
+}
+
+.extension-container .top-bottom-zero {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.extension-container .recent-store-heading {
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .recent-store-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .recent-store {
+    border: 1px solid #dcdcdc;
+    padding: 10px 28px;
+    text-align: center;
+    flex-grow: 1;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .recent-store:first-child {
+    margin-right: 10px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .up-to {
+    color: #999999;
+    font-size: 11px;
+    margin-bottom: 3px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .recent-store-cash-back {
+    color: #6AAF1E;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue';
+    cursor: pointer;
+}
+
+.extension-container .header-logo img {
+    width: 62px;
+    padding-top: 15px;
+}
+
+.extension-container .recent-store img {
+    width: 88px;
+}
+
+.extension-container .product-logo img {
+    width: 70px;
+    vertical-align: bottom;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.extension-container .get-up-to-box {
+    width: 325px ;
+    display: flex;
+    border: 0px solid #bababa;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 6px 5px -1px rgba(204, 204, 204, 0.66);
+    -moz-box-shadow: 0px 6px 5px -1px rgba(204, 204, 204, 0.66);
+    box-shadow: 0px 6px 5px -1px rgba(204, 204, 204, 0.66);
+    background: #fff;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .left-section {
+    display: inline-block !important;
+    background: #e8e8e8 ;
+    float: left;
+    padding: 24px 20px !important;
+    font-family: 'Helvetica Neue';
+border-top-left-radius: 5px !important;
+border-bottom-left-radius: 5px !important;
+}
+
+.extension-container .right-section .cash-back-btn {
+    background: #08b4df !important;
+    color: #fff!important;
+    display: inline-block;
+    padding: 11px 13px !important;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 2px;
+    text-decoration: none!important;
+    font-family: 'Helvetica Neue';
+}
+.extension-container .right-section .latter 
+{
+    text-transform: initial !important;
+}
+.extension-container .later {
+    font-size: 12px;
+    text-align: center !important;
+    color: #bababa !important;
+    text-decoration: none !important;
+    font-family: 'Helvetica Neue';
+    /* text-transform: capitalize !important */
+}
+
+/* .extension-container .right-section {
+float: left;
+    left: 3px;
+    padding: 12px 15px 10px 13px !important;
+    text-align: center;
+    position: relative;
+    font-family: 'Helvetica Neue';
+} */
+
+.extension-container .right-section {
+    /* float: left; */
+    margin: auto;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    left: auto;
+    padding: 12px 15px 10px 13px !important;
+    text-align: center;
+    position: relative;
+    font-family: 'Helvetica Neue';
+}
+.extension-container .right-section .static-box {
+    /* float: left; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+       align-items: center;
+}
+
+.dark-theme-header-static-pages::after {
+    content: '';
+    background-image: url(../images/strip.png);
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    bottom: 0px;
+    background-size: 100%;
+}
+
+.extension-container .logo_1 {
+    width: 62px !important;
+    height: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+}
+
+.extension-container .no-bg {
+    background: none;
+}
+
+.extension-container .congrats-row {
+    padding-left: 6px;
+}
+
+.extension-container .kudos {
+    width: 190px;
+    font-size: 13px;
+    text-align: left;
+    padding-top: 10px;
+    font-weight: 500;
+    font-family: 'Helvetica Neue';
+    line-height: 15px;
+}
+
+.extension-container .confirmation-box {
+    position: relative;
+    text-align: center;
+    padding: 16px 60px 15px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .close-button {
+    position: absolute;
+    top: 6px;
+    right: -1px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .confirmation-box .close-button {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+}
+
+.extension-container .confirmation-box .log_1 {
+    padding-bottom: 12px ;
+}
+
+.extension-container .future-savings {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .confirmation-box button {
+    background: #08b4df;
+    color: #Fff;
+    padding: 7px 33px;
+    border: 1px solid;
+}
+
+.extension-container .confirmation-box button:hover {
+    cursor: pointer;
+}
+
+.extension-container .activated-cashback {
+    font-weight: 700;
+    font-size: 16px;
+    color: #6AAF1E;
+    display: table;
+    margin: 19px auto !important;
+    width: 100%;
+    text-align: center !important;
+}
+
+.extension-container .activation-padding {
+    /* padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    margin: 0 auto;
+    display: table;
+    font-family: 'Helvetica Neue';
+    width: 223px; */
+
+    padding-left: 0;
+padding-right: 0;
+text-align: center;
+margin: 2px 0px 0px 20px !important;
+display: table;
+font-family: 'Helvetica Neue';
+width: auto;
+float: none !important;
+
+
+
+}
+
+
+
+.extension-container header {
+    border-bottom: 1px solid #ddddde;
+}
+.container {
+    width: 950px;
+    margin: 0 auto;
+    position: relative;
+    font-family: 'Helvetica Neue';
+}
+
+ .full-page-logo {
+    width: 82px;
+    padding: 13px 0px 15px;
+}
+
+ input[type=checkbox] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+    height: 12px;
+    width: 12px;
+}
+
+ .pre-heading {
+    margin-top: 70px;
+    color: #000;
+    font-size: 32px;
+    font-weight: normal;
+}
+
+ .submit-btn {
+    color: #fff;
+    background: #08b4df;
+    text-decoration: none;
+    line-height: 2.8;
+    white-space: nowrap;
+    text-align: center;
+    display: block;
+    font-size: 13px;
+    border-radius: 3px;
+    border: 0;
+    display: inline-block;
+    padding: 0px 60px;
+    margin-top: 57px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    clear: both;
+    float: left;
+    font-family: 'Helvetica Neue';
+}
+
+ .signed-in {
+    color: #656664;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 43px;
+    font-family: 'Helvetica Neue';
+}
+
+ .you-action {
+    color: #08b4df;
+    text-decoration: none;
+}
+
+.as-user {
+    color: #000;
+    font-family: 'Helvetica Neue';
+}
+
+.container ul li {
+    margin-bottom: 10px;
+    color: #777776;
+    font-family: 'Helvetica Neue';
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+}
+
+.extension-container header .header-logo {
+    width: 104px;
+    padding: 0px;
+    display: table;
+    margin: 0 auto;
+}
+
+.reinstall {
+    border: 1px solid #08b4df;
+    color: #08b4df;
+    text-decoration: none;
+    /* float: right; */
+    position: absolute;
+    right: 0;
+    top: 25px;
+    padding: 7px 20px 10px 15px;
+    border-radius: 2px;
+    font-family: 'Helvetica Neue';
+}
+
+.what-you-think {
+    float: left;
+    width: 600px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    height: 75px;
+    font-family: 'Helvetica Neue';
+}
+
+
+ .please-txt {
+    color: #656664;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Helvetica Neue';
+}
+
+ .select-all {
+    color: #353533;
+    font-size: 15px;
+    font-family: 'Helvetica Neue';
+    margin-bottom: 20px;
+}
+
+.extension-container .reinstall span {
+    font-size: 22px;
+    padding-right: 6px;
+    font-family: 'Helvetica Neue';
+}
+
+.extension-container .what-feedback {
+    font-size: 15px;
+    color: #000;
+    margin-top: 30px;
+    font-family: 'Helvetica Neue';
+}
+.extension-container .before-after {position: relative!important; z-index: 1}
+
+.overlay  .before-after {
+  z-index: 0 !important;
+  position: relative!important;
+}
+.extension-container .before-after::before {
+    display: none !important;
+    content: ''!important;
+    position: absolute!important;
+    width: 108px;
+    /* height: 1px; */
+    border: 1px solid #e2e2e2 !important;
+    top: 16px !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: -1 !important;
+
+}
+@-moz-document url-prefix() {
+
+    .extension-container .before-after:before {
+        display: block;
+        content: '';
+        position: absolute;
+        width: 108px;
+        /* height: 1px; */
+        border: 1px solid #e2e2e2;
+        top: 17px;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+
+    }
+}
+
+
+
+
+.extension-container h2 span {
+
+    background: #fff;
+    z-index: 111;
+    padding: 0px 7px;
+    font-weight: normal;
+    margin: 0;
+    font-size: 17px;
+
+}
+
+
+@media only screen and (max-width: 767px) {
+
+
+    .extension-container .what-you-think {
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+
+
+
+    .extension-container .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .extension-container  .pre-heading {
+        margin-top: 35px;
+        color: #000;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .extension-container  .signed-in {
+        color: #656664;
+        font-size: 18px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .container ul li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        padding-left: 25px;
+        position: relative;
+    }
+    .extension-container  .container ul li input {
+        position: absolute;
+        left: 0;
+    }
+    .extension-container   .submit-btn {
+        display: table;
+        padding: 0px 60px;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+      .what-you-think {
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+
+
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .pre-heading {
+        margin-top: 35px;
+        color: #000;
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: normal;
+    }
+  .signed-in {
+        color: #656664;
+        font-size: 18px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .container ul li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        padding-left: 0px;
+        position: relative;
+    }
+    .extension-container  .container ul li input {
+        position: absolute;
+        left: 0;
+    }
+    .extension-container   .submit-btn {
+        display: table;
+        padding: 0px 60px;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .pre-heading {
+        margin-top: 35px;
+        color: #000;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .signed-in {
+        color: #656664;
+        font-size: 19px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .container ul li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        padding-left: 25px;
+        position: relative;
+    }
+    .container ul li input {
+        position: absolute;
+        left: 0;
+    }
+    .submit-btn {
+        display: table;
+        padding: 0px 60px;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+.extension-container .cashback-row-activated .header-logo img {
+    width: 30px;
+    padding-top: 6px;
+}
+
+
+
+.extension-container .show-result-row {
+
+    border: 1px solid #dcdcdc;
+    border-top: 0px;
+    max-height: 120px;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    z-index: 2;
+}
+.extension-container .search-result-flex-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    /* padding: 6px 7px; */
+    /* padding-bottom: 6px; */
+}
+.extension-container .search-result-flex-box:hover {cursor: pointer;background: #65b518;color: #fff;}
+
+.extension-container .search-result-flex-box:hover .search-result-hidden-text-hover {display: block;font-size: 12px;}
+
+.search-result-flex-box:hover .search-result-offer {display: none;}
+.extension-container .search-result-hidden-text-hover {display: none;}
+.extension-container .search-result-title {
+    font-size: 14px;
+    font-weight: 400;
+}
+.extension-container .search-result-title span {font-weight: bold}
+.extension-container .search-result-offer {
+    font-size: 14px;
+}
+
+
+.extension-container .overlay {position: relative;}
+.extension-container .overlay::after {position: fixed;
+    background-color:rgba(120, 120, 120, 0.71);
+    content: "";
+    width: 100%;
+    z-index: 0;
+    height: 200%;
+    display: block;
+    top: 0;
+    left: 0;}
+
+
+
+    .extension-container .product-btn:hover {
+        background: #87cc51;
+    }
+
+
+
+
+    .extension-container .wrapper_1 {
+
+position: fixed;
+right: 15px;
+top: 10px;
+z-index: 2147483647;
+font-family: 'Helvetica Neue';
+
+
+
+    }
+
+
+
+    .extension-container .cash-back-btn:hover {color: #fff !important;}
+    .extension-container .later:hover { color: #bababa !important;}
+
+    .react-autosuggest__suggestions-container {position: relative; }
+
+
+    .auto-width {width: auto !important}
+
+
+    .header-border {border-bottom: 1px solid #ddddde;}
+
+
+
+    .zero {    margin: 0;
+        padding: 0px;}
+
+
+        .search-find {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+            text-decoration: none;
+            color: initial;
+            padding: 6px 7px;
+          }
+            .search-find:hover {color: #fff !important}
+
+
+
+            .top-logo {width: 120px;}
+            .top-logo img  {width: 100%;}
+
+            .height-auto {height: auto !important;}
+
+            .logo-images {width: 100% !important;}
+
+             .data-saved {
+
+                color: #5bc3a2;
+                padding: 0px 15px 5px 0px;
+                border-radius: 4px;
+                display:block;
+                transition: all .3s ease-out;
+                clear: both;
+                opacity: 1;
+                
+            }
+
+            .data-hide {opacity: 0;}
+
+            .search-result-flex-box-selected {
+                background: #65b518;
+                color: #fff;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /************************** Sign up SIgn in ******************/
+
+
+
+
+          .plugin-1-signup .mod-signup .fb-signup,
+          .plugin-1-signup .mod-signin .fb-login {
+          background: #3b5998 url(../images/sprite_icon_21.png) no-repeat 15px -30px;
+          cursor: pointer;
+          border: 0;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-weight: 500;
+          padding-right: 0;
+          text-align: left;
+          height: 40px;
+          width: 213px;
+          border-radius: 3px;
+          }
+
+          .plugin-1-signup .mod-signup .bd .fb-signup .fb-text,
+          .plugin-1-signup .mod-signin .bd .fb-login .fb-text {
+          border-left: 1px solid #fcfcf9;
+          color: #fff;
+          cursor: pointer;
+          margin-left: 35px;
+          padding: 13px 0 13px 14px;
+          text-align: left;
+          }
+
+          .plugin-1-signup .mod-signup strong,
+          .plugin-1-signup .mod-signin strong {
+          font-weight: bold;
+          }
+
+          .plugin-1-signup .mod-signin .bd,
+          .plugin-1-signup .mod-signup .bd {
+          margin-top: 15px;
+          }
+
+          .plugin-1-signup .mod-signup .continue {
+          margin-left: 10px
+          }
+
+          .plugin-1-signup .mod-signin .separator,
+          .plugin-1-signup .mod-signup .separator {
+          position: relative;
+          margin: 0 20% 0 0
+          }
+
+          .plugin-1-signup .mod-signin .separator hr,
+          .plugin-1-signup .mod-signup .separator hr {
+          background-color: #e4e4e4;
+          height: 1px;
+          border: 0
+          }
+
+          .plugin-1-signup .mod-signin .separator p,
+          .plugin-1-signup .mod-signup .separator p {
+          position: absolute;
+          top: -7px;
+          left: 45%;
+          padding: 0 10px;
+          background-color: #fcfcf9
+          }
+
+          .plugin-1-signup .mod-signin p.errmsg,
+          .plugin-1-signup .mod-signup p.errmsg,
+          .plugin-1-signup .mod-forgotpwd p.errmsg {
+          color: #cb221b;
+          padding: 3px 0 3px 0;
+          margin-bottom: 0;
+          }
+
+          .plugin-1-signup .mod-signin .signin-option2-label,
+          .plugin-1-signup .mod-signup .signup-option2-label {
+          margin-top: 15px;
+          margin-bottom: 10px;
+          }
+
+          .plugin-1-signup .account-signup .txt-lg {
+          font-size: 13px;
+          color: #444;
+          }
+
+          .plugin-1-signup .mod-signup .input-email,
+          .plugin-1-signup .mod-signup .input-pwd,
+          .plugin-1-signup .mod-signin .input-email,
+          .plugin-1-signup .mod-signin .input-pwd,
+          .plugin-1-signup .mod-forgotpwd .input-email {
+          border: 1px solid #ccc;
+          border-radius: 2px;
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+          color: rgba(0, 0, 0, 0.75);
+          display: block;
+          margin: 0 0 -4px 0;
+          transition: all .15s linear;
+          width: 240px;
+          height: 18px;
+          padding: 8px;
+          }
+
+          .plugin-1-signup .account-signup .txt-lg {
+          font-size: 13px;
+          color: #444;
+          }
+
+          .plugin-1-signup .mod-signup .password-hint {
+          font-style: italic;
+          margin-top: 5px;
+          color: #666;
+          font-size: .84em;
+          }
+
+          .plugin-1-signup .mod-signup .bd .notice_option {
+          padding-left: 27px;
+          background-position: 0 -366px;
+          }
+
+          .plugin-1-signup .account-signup .bold {
+          font-family: 'Helvetica Neue';
+          font-weight: 600;
+          }
+
+          .plugin-1-signup .account-signup .txt-lg {
+          font-size: 13px;
+          color: #444;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-weight: 500;
+          }
+
+          .plugin-1-signup .email-register .sprite-icons {
+          background-image: url(../images/sprite_icon_28.png);
+          background-repeat: no-repeat;
+          }
+
+          .plugin-1-signup .mod-signup .bd .options {
+          margin: 10px 0 0 0;
+          }
+
+          .plugin-1-signup .mod-signup .input-email.err,
+          .plugin-1-signup .mod-signup .input-pwd.err,
+          .plugin-1-signup .mod-signin .input-email.err,
+          .plugin-1-signup .mod-signin .input-pwd.err,
+          .plugin-1-signup .mod-forgotpwd .input-email.err {
+          border: 1px solid #cb221b;
+          }
+
+          .plugin-1-signup .btn-cta.disabled,
+          .plugin-1-signup .cta-button.disabled,
+          .plugin-1-signup .pointerEnabled .btn-cta.disabled:hover,
+          .plugin-1-signup .pointerEnabled .cta-button.disabled:hover {
+          cursor: default;
+          color: #b9b9b9;
+          background: #e9e9e9;
+          }
+
+          .plugin-1-signup .btn-cta,
+          .plugin-1-signup .cta-button {
+          background: #08b4df;
+          border: 0;
+          font-weight: bold;
+          color: #fff;
+          cursor: pointer;
+          padding: 12px 20px;
+          text-decoration: none;
+          border-radius: 3px;
+          letter-spacing: 0;
+          }
+
+          .plugin-1-signup .mod-signup .password-hint {
+          font-style: italic;
+          margin-top: 5px;
+          color: #666;
+          font-size: 10.3px;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-weight: 600;
+          letter-spacing: -.3px;
+          }
+
+          .plugin-1-signup .mod-signup .hd,
+          .plugin-1-signup .mod-signin .hd,
+          .plugin-1-signup .mod-forgotpwd .hd {
+          margin-bottom: 20px;
+          }
+
+          .plugin-1-signup .mod-signup .bd .options li {
+          margin-bottom: 10px;
+          }
+
+          .plugin-1-signup .options input {
+          margin: 0;
+          padding: 0;
+          margin-right: 5px;
+          }
+
+
+          .plugin-1-signup .account-signup {
+          width: 100%;
+          margin: 0 auto;
+          padding: 0px;
+          box-sizing: border-box;
+          }
+          .plugin-1-signup .account-signup .bd {
+          padding-left: 0px !important;
+          float:inherit!important;
+          }
+          .plugin-1-signup .account-signup .signup-block {
+          padding: 0px;
+          display: block;
+          vertical-align: top;
+          width: 100%;
+          box-sizing: border-box;
+          }
+          .plugin-1-signup .account-signup .txt-xxl {
+          font-size: 19px;
+          }
+          .plugin-1-signup .mod-signup h1, .plugin-1-signup .mod-signin h1, .plugin-1-signup .mod-forgotpwd h1 {
+          color: #08b4df;
+          margin-right: 20px !important;
+          }
+          .plugin-1-signup .mod-signup .hd, .plugin-1-signup  .mod-signin .hd, .plugin-1-signup  .mod-forgotpwd .hd {
+          margin-bottom: 10px;
+          }
+          .plugin-1-signup .account-signup .txt-md {
+          font-size: 12px!important;
+          color: #444;
+          font-weight: 600;
+          }
+          .plugin-1-signup .mod-signup h1, .plugin-1-signup .mod-signin h1, .plugin-1-signup .mod-forgotpwd h1 {
+          display: block;
+          color: #08b4df;
+          margin-right:0px;
+          font-family: 'Helvetica Neue';
+          }
+          .plugin-1-signup .txt-md .signin {
+          color: #444;
+          text-decoration: none;
+          display: inline-block;
+          background-position: 0px;
+          padding: 0px;
+          }
+          .plugin-1-signup .mod-signup .fb-signup, .plugin-1-signup  .mod-signin .fb-login {
+          width: 100%;
+          }
+          .plugin-1-signup .mod-signup .input-email, .plugin-1-signup  .mod-signup .input-pwd, .plugin-1-signup  .mod-signin .input-email, .plugin-1-signup  .mod-signin .input-pwd, .plugin-1-signup  .mod-forgotpwd .input-email {
+          width: 95%;
+          }
+          .plugin-1-signup  .mod-signup .bd .options label, .plugin-1-signup  .mod-signin .bd .rememme label {
+          margin-left: 4px;
+          vertical-align: top;
+          display: inline-block;
+          line-height: 17px;
+          width: 90%;
+          }
+          .plugin-1-signup .mod-signin .bd .chkbox, .plugin-1-signup  .mod-signup .bd .chkbox {
+          vertical-align: middle;
+          }
+          .plugin-1-signup  .mod-signin .btn-cta, .plugin-1-signup  .mod-signup .btn-cta, .plugin-1-signup  .mod-forgotpwd .btn-cta {
+          width: 100%;
+          }
+
+
+          .plugin-1-signup .mod-signup a {color: initial;}
+
+          .plugin-1-signup form fieldset {border: 0px;padding: 0px;}
+
+
+          .plugin-1-signup p.errmsg {
+          color: #cb221b;
+          padding: 12px 0 8px 0;
+          margin-bottom: 0;
+          }
+
+          .plugin-1-signup .account-signup a {
+          color: inherit;
+          text-decoration: underline;
+          }
+
+          .plugin-1-signup .rememme {
+          margin: 16px 0 0 0;
+          }
+
+
+          /************************** Sign up SIgn in ******************/
+
+          
+.wrapper_1 .top-close-btn {position: absolute; top: 10px;right: 10px;width: 9px;height: 9px; z-index: 999;}
+
+.auto-hide{
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 5s;
+    animation: seconds 0.65.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay:    1s;
+    position: relative;
+  }
+  @-webkit-keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+  @keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+
+
+
+
+          .search-result-flex-box-selected  .search-result-hidden-text-hover {
+   display: block;
+   color: #fff;
+      font-size: 12px;
+}
+
+.search-result-flex-box-selected  .search-result-offer {
+  display: none;
+}
+
+
+.search-result-flex-box-selected .search-result-title span {
+   color: #fff;
+}
+
+.hideDiv { display:none !important}
+.showDiv {display:block !important}
+
+
+.er404-container { background-color: #fcfcfa; height: auto; color: #525156; text-align: center;overflow: hidden;}
+.er404-txt2 {font-size: 26px;}
+.er404-txt1 { font-size: 14px;}
+.er404-txt3 {font-size: 18px; margin-bottom: 31px;}
+.er-404-img {margin: 30px 0px;display: block;}
+.er404-couopn-logo { text-align: center; margin-top: 40px; margin-bottom: 40px;}
+
+
+/********************* Dark Theme ******************/
+
+.dark-theme  footer {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 0px 0px 0px;
+    border-top: 1px solid #cdcdcd;
+    background: #ededed;
+}
+
+.dark-theme  footer a img {
+    vertical-align: middle;
+    margin-top: -1px;
+    width: 18px;
+    /*position: relative;
+    top: -1px;*/
+}
+.dark-theme footer a {
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 13px;
+    border-right: 1px solid #d8d8d8;
+    padding-top: 11px;
+}
+.dark-theme .main-content {
+    background: #f6f6f6;
+}
+.dark-theme  .cash-back-product {
+
+    border: 1px solid #cdcdcd;
+    background: #fff;
+}
+
+.dark-theme .recent-store {
+    border: 1px solid #cdcdcd;
+    background: #fff;
+}
+
+
+.dark-theme  .search-box .search {
+    background: #515256;
+}
+
+.dark-theme  header {
+    border-bottom: 0px solid #ddddde;
+    background: #515256;
+    padding-bottom: 7px;
+}
+/* .cashback-row-activated-inner-btn {
+    background: #6AAF1E;
+    padding: 10px 9px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 2px;
+    width: 100px;
+    cursor: pointer !important;
+} */
+/*.cashback-row-activated-inner-btn:hover {
+    background: #87cc51;
+}*/
+
+.cashback-row-dark-theme {
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+
+.cashback-row-dark-theme div {
+padding: 7px 0px;
+    flex: 1;
+    position: relative ;
+  
+}
+
+.cashback-row-dark-theme div span:last-child{
+    color: #767676 !important;
+    font-size: 12px !important;
+
+}
+.cashback-row-dark-theme div span:first-child {  
+        font-weight: 500;
+        font-size: 24px !important;
+}
+
+
+.cashback-row-dark-theme div:first-child::after { 
+    /*content: "|";
+    color: #cdcdcd;
+    width: 1px;
+    display: block;
+    position: absolute;
+    right: 4px;
+    top: 9px;
+    bottom: 0;
+    margin: auto;
+    font-size: 40px;
+    font-weight: lighter;*/
+
+
+    content: "|";
+color: #cdcdcd;
+width: 1px;
+display: block;
+position: absolute;
+right: 0px;
+top: 0px;
+bottom: 0;
+margin: auto;
+font-size: 0px;
+font-weight: lighter;
+border-right: 1px solid #CDCDCE;
+height: 50%;
+}
+
+
+.dark-theme  .before-after::before {
+    display: none;
+}
+
+.dark-theme   h2 span {
+
+    padding: 0px;
+    font-weight: bold;
+    margin: 0;
+    font-size: 14px;
+    background: none;
+    color: #444;
+}
+
+.dark-theme   .recent-store-heading {
+    margin: 0px;
+    text-align: left;
+    margin-top: 6px;
+    margin-bottom: 4px;
+
+
+}
+
+.main-radius {border-radius: 7px;background-color: #515256}
+
+.dark-theme  .product-btn {
+    padding: 10px 9px;
+    margin-bottom: 10px;
+    width: 159px;
+    font-weight: 500;
+}
+
+.dark-theme  .cash-back-product {
+
+    padding: 0px 20px 0px 14px;
+
+}
+
+.dark-theme .product-logo {
+
+    left: 6px;
+}
+
+.dark-theme  .header-logo img {
+    /* width: 82px; */
+    width: 74px;
+    padding-top: 10px;
+}
+
+.dark-theme  .search-box .search {
+
+    padding: 0px 18px;
+
+
+}
+.dark-theme  .search-box {
+    position: relative;
+    margin-top: -1px;
+    z-index: 999999999999;
+}
+
+.dark-theme .best-deal .product-detail {
+    padding: 10px 0px 5px 35px;
+    font-family: 'Helvetica Neue';
+    flex: 1;
+
+}
+.dark-theme  .product-detail {
+    padding: 0px 0px 5px 35px;
+    font-family: 'Helvetica Neue';
+    flex: 1;
+
+}
+
+
+.dark-theme  .product-logo img {
+    width: auto;
+     max-width: 100px;
+}
+
+
+.dark-theme  .cashback-row-activated {
+
+    padding: 17px 10px 16px;
+    background: #fff;
+    margin-bottom: 0px !important; 
+}
+
+
+.cashback-row-activated-inner-btn {
+    background: #6AAF1E;
+    padding: 10px 9px;     
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;   
+    text-decoration: none;
+    border-radius: 2px;
+    width: 170px;
+    cursor: pointer !important;
+
+}
+.cashback-row-activated-inner-btn:hover {
+    background: #87cc51;
+} 
+
+
+.extension-container .off-sale {
+    color: #0690b3;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Helvetica Neue';
+}
+
+.dark-theme   .product-logo {
+    text-align: center;
+    width: 94px;
+    height: 94px;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.dark-theme  .used {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 5px;
+    float: left;
+    position: relative;
+    padding-left: 10px;
+    font-family: 'Helvetica Neue';
+}
+.dark-theme  .date {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 5px;
+    float: left;
+    position: relative;
+    padding-left: 0px;
+    font-family: 'Helvetica Neue';
+}
+
+.dark-theme  .cashback-bottom-content-row {
+    display: flex;
+    /* justify-content: space-around; */
+    justify-content: left;
+    padding: 3px 0px 0px;
+    align-items: center;
+    font-family: 'Helvetica Neue';
+}
+
+.dark-theme   .cash-back-page-dark-style .cash-back-product  {
+
+    padding: 0px 20px 0px 0px;
+}
+
+.dark-theme   .cash-back-page-dark-style .heading-detail {
+    /* padding: 0px 22px 0px 13px; */
+    padding: 0px 5px 0px 7px;
+
+
+}
+
+
+.dark-theme   .cash-back-page-dark-style  .product-logo {
+    text-align: center;
+    width: 94px;
+    height: 109px;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.dark-theme   .cash-back-page-dark-style .product-logo img {
+    width: auto;
+    max-width: 70px;
+    max-height: 80px;
+}
+
+.dark-theme   .cash-back-page-dark-style .product-heading {
+    /* font-size: 16px; */
+    font-size: 15px;
+    /* font-weight: Bold; */
+    color: #444;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 100%;
+    line-height: 19px;
+    margin-top: 0px;
+}
+
+.dark-theme   .cash-back-page-dark-style .product-heading a {
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.dark-theme-header-static-pages {
+    background: #515256;
+    position: relative;
+}
+
+
+h1,h2,h3,h4,h5,h6 {margin:0;padding:0;font-weight: normal;}
+
+.container ol, ul {
+    list-style: none;
+    margin: 0;
+padding: 0;
+}
+
+.container li {
+margin: 0;
+padding: 0;
+}
+
+.cashback-row-dark-theme .light-font {
+color: #767676 !important;
+font-size: 12px !important;
+}
+
+.cashback-tracking-text-subtitle {
+font-size: 11px !important;
+color: #999999;
+font-style: italic;
+width: 100% !important;
+margin-top: 3px;
+padding: 0px !important;
+}
+
+
+.extension-container .best-deals-container {
+padding: 10px;
+height: 275px !important;
+overflow-y: scroll;
+overflow-x: hidden;
+font-family: 'Helvetica Neue';
+position: relative;
+}
+
+
+
+.extension-container .all-container {
+padding: 10px;
+height: 253px !important;
+overflow-y: scroll;
+overflow-x: hidden;
+font-family: 'Helvetica Neue';
+position: relative;
+}
+
+.margin-left-25 {margin-left: 25px;}
+
+.extension-container .get-up-to-box {
+border-top-left-radius: 7px !important;
+border-bottom-left-radius: 7px !important;
+}
+.account-page-country-limit {
+    position: absolute !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 30px 0px !important;
+}
+
+
+
+.account-page-show-country-restrict {
+  
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width:100% !important;
+    z-index: 1;
+    background-color: #fff;
+    padding: 12px;
+    text-align: center;
+    bottom: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 300 !important;
+}
+
+
+.account-page-country-limit::before {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: rgba(112, 172, 193, 0.67);
+}
+
+.hidden-flow {
+
+    overflow: hidden;
+}
