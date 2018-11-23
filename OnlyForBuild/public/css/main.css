@@ -1167,7 +1167,7 @@ float: none !important;
     width: 100%;
     box-sizing: border-box;
     overflow-y: scroll;
-    z-index: 2;
+    z-index: 999999999999;
 }
 .extension-container .search-result-flex-box {
     display: flex;

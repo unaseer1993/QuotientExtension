@@ -102,12 +102,12 @@ validateEmail(email)
       if(this.validateEmail(email)){
       const self = this;
      // axios.post(`http://websvc.westus.cloudapp.azure.com/clipapi/rest/users/sign-in`, {
-         axios.post(`https://codesapi.coupons.com/clipapi/rest/users/sign-in`, {
+      //    axios.post(`https://codesapi.coupons.com/clipapi/rest/users/sign-in`, {
        
-        email:email,
-        password:pass
-      })
-     // signin.sigin(email,pass)
+      //   email:email,
+      //   password:pass
+      // })
+      signin.sigin(email,pass)
       .then(function (response) {
         if (response.status === 200) {
           self.setState({

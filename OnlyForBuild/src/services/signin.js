@@ -6,8 +6,8 @@ const service='clipapi';
 export default {
     sigin(email,password){
         return api.post(service+'/rest/users/sign-in',
-        email,
-        password
+        {email,
+        password}
         );
     }
 

@@ -32,22 +32,25 @@ componentDidMount(){
 }
 
     onSelect(){
+    
    var activatedlinks = [];   
     var actiii = false;
-    if(localStorage.getItem('activatedlinks')!==null)
+    // alert(this.state.mId);
+    // alert(this.state.cId);
+        if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
                for (var i = 0; i < activatedlinks.length; i++) {
- if (activatedlinks[i] == this.state.mId)
- {
-actiii = true;
-break;
- }
-}
-if(!actiii)
-{
-    activatedlinks.push(this.state.mId);
-}    
+          if (activatedlinks[i] == this.state.mId)
+                {
+              actiii = true;
+                break;
+                }
+                }
+                if(!actiii)
+            {
+                activatedlinks.push(this.state.mId);
+                  }    
           }
           else
           {
@@ -55,15 +58,15 @@ if(!actiii)
           }
                 localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));    
 
-      this.setState({
-        isloading: true
-      });
-      var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.cId+'&consumerId=1';
-   //     var url = 'https://codesapi.pdn.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.cId+'&consumerId=1';
-   const config = { headers: {'Content-Type': 'application/json'  , 
-   'Authorization': localStorage.getItem('token'),
-   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
- } };
+          this.setState({
+            isloading: true
+            });
+      //       var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.cId+'&consumerId=1';
+      //    const config = { headers: {'Content-Type': 'application/json'  , 
+      //    'Authorization': localStorage.getItem('token'),
+      //    'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+      //  } };
+ //alert("Click")
  CouponServices.fetchRedirectURl(this.state.cId)
      // axios.put(url,'', config)
       .then(response => {
@@ -72,6 +75,7 @@ if(!actiii)
         });
         safari.self.hide();
         window.location.reload();
+     //   alert(response.data.data.redirectUrl);
           var newURL = response.data.data.redirectUrl;
           var targetWin = safari.application.activeBrowserWindow;
           targetWin.openTab().url = newURL;
@@ -84,13 +88,6 @@ if(!actiii)
         window.location.reload();
       });
 
-
-        // console.log("HY "  +this.state.mId);
-        // browser.runtime.sendMessage({
-        // target: "cookies",
-        // mId : this.state.mId,
-        // cId : this.state.cId
-        // });
     }
 
 

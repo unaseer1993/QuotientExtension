@@ -8,8 +8,8 @@ const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
 let api = axios.create({
   baseURL: baseUrl,
   headers: {
-    'X-LOCATION-TIME': `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}` ,
-    'Origin': 'https://couponswest.netpace.co' 
+    'X-LOCATION-TIME': `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}`/* ,
+    'Access-Control-Allow-Origin': 'https://couponswest.netpace.co' */
   }
 });
 

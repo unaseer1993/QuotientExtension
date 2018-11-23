@@ -67,7 +67,7 @@ this.setState({ islogout : true})
         localStorage.setItem('userStatus',0);
         localStorage.removeItem('activated');
         localStorage.removeItem('activatedlinks');
-        var newURL = "https://www.coupons.com/coupon-codes/";
+        var newURL = "https://couponseast.netpace.co/coupon-codes/";
         var targetWin = safari.application.activeBrowserWindow;
         targetWin.openTab().url = newURL;
 

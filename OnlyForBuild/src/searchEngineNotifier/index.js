@@ -24,12 +24,13 @@ function render (){
 
     element.prepend(app);
         for(let i=0;i<element.length;i++){
-            axios
-            .get(
-              "https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/domain_url?domainUrl="+element[i].hostname,  {
-                  headers: {
-                    'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-                  }})
+            // axios
+            // .get(
+            //   "https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/domain_url?domainUrl="+element[i].hostname,  {
+            //       headers: {
+            //         'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+            //       }})
+            couponsService.fetchCashbackCouponByMerchant(element[i].hostname)
              .then((res)=>{
                 console.log(element[i].hostname);
                 console.log(res);
