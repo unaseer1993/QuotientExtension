@@ -59,7 +59,7 @@ class Coupons extends React.Component {
             coupons.map(coupon =>
            
                 <CouponsItem title={coupon.title.length > 20  ? `${truncate(coupon.title,6)} ...` : coupon.title} percentage={coupon.cashbackPercentage} url={coupon.redirectUrl}  id={this.couponId(coupon.id)} type={coupon.couponType.title} code={coupon.code} date={this.convertDate(coupon.endDate)}
-                exclusive={this.isExclusive(coupon.exclusiveOffer)} CouponType={coupon.isCashbackCoupon} Merchantid={coupon.merchant.id}/>) }
+                exclusive={this.isExclusive(coupon.exclusiveOffer)} CouponType={coupon.isCashbackCoupon} Merchantid={coupon.merchant.id} hideExpirationDate={coupon.hideExpirationDate}/>) }
         
             
              </Fragment>   );

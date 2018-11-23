@@ -1,5 +1,6 @@
 /*global safari*/
 import React from 'react';
+import {logoUrl} from '../../utils/urls';
 
 
 class LogoHeader extends React.Component {
@@ -9,7 +10,7 @@ class LogoHeader extends React.Component {
     logoclicked()
     {
       safari.self.hide();
-      var newURL = "https://couponswest.netpace.co/coupon-codes/";
+      var newURL = logoUrl;
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }

@@ -1,29 +1,22 @@
 import axios from 'axios';
 import baseUrl from '../../utils/constants';
-
-// // Vuex store
-// import { store } from '~/store'
-
-// export default () => axios.create({
-//   baseURL: baseUrl
-//   ,headers: {
-//         'X-LOCATION-TIME': `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}`
-//       }
-//   // headers: {'authorization': store.getters.getToken ? store.getters.getToken : 'None'}
-// });
+import {tokenHandler} from './auth'
+//import { getTodaysDate, getFormattedTime } from '../../utils/methods';
 
 
 const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-// export default () => axios.create({
-//   baseURL: baseUrl,
-//   headers: {
-//     'X-LOCATION-TIME': `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}`
-//   }
-// });
+let api = axios.create({
+  baseURL: baseUrl,
+  headers: {
+    'X-LOCATION-TIME': `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}` ,
+    'Origin': 'https://couponswest.netpace.co' 
+  }
+});
 
-export default
-{
- getTodaysDate() {
+api.interceptors.request.use(tokenHandler)
+
+export default api;
+function getTodaysDate () {
     
   
   let today = new Date();
@@ -41,11 +34,13 @@ export default
   today = `${yyyy}-${mm}-${dd}`;
 
   return today;
-} ,
+} 
 
-  
+ function getDoubleDigitNumber (number) {
+  return number < 10 ? `${parseInt(`${0}`, 10)}${number}` : number;
+} 
 
-  getFormattedTime (unixTimestamp) {
+ function getFormattedTime (unixTimestamp) {
  
    const date = new Date(unixTimestamp * 1000);
   // Hours part from the timestamp
@@ -60,9 +55,3 @@ export default
 
   return formattedTime;
 }
-}
-
-function getDoubleDigitNumber (number) {
-  return number < 10 ? `${parseInt(`${0}`, 10)}${number}` : number;
-} 
-

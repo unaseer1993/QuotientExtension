@@ -4,6 +4,7 @@ import React,{Fragment} from 'react';
 import axios from 'axios';
 import LoadingSpinner from './loading-spinner';
 import API from "../services/api";
+import CouponServices from "../services/couponService"
 
 let browser = window.browser || window.safari;
 const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
@@ -63,7 +64,9 @@ if(!actiii)
    'Authorization': localStorage.getItem('token'),
    'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
  } };
-      axios.put(url,'', config).then(response => {
+ CouponServices.fetchRedirectURl(this.state.cId)
+     // axios.put(url,'', config)
+      .then(response => {
         this.setState({
           isloading: false
         });

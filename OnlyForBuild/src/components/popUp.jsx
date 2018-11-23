@@ -14,6 +14,7 @@ import LoadingSpinner from "./loading-spinner";
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from "axios";
 import API from "../services/api";
+import CouponService from "../services/couponService"
 /*global safari*/
 
 class PopUp extends React.Component {
@@ -28,7 +29,8 @@ class PopUp extends React.Component {
       pageNumber: 0,
       id:0,
       activated:"",
-      couponId:0
+      couponId:0,
+      isDisable:"false"
     };
   }
 
@@ -45,6 +47,10 @@ class PopUp extends React.Component {
   }
   componentDidMount() {
     this.setState({ isloading: true });
+    CouponService.fetchIsUSA()
+         .then(res => {   
+        this.setState({ isDisable : res.data.data });
+          });
   //  window.addEventListener('scroll', function () {console.log(window.scrollX, window.scrollY)})
   }
 
@@ -86,7 +92,9 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
     const config = { headers: {'Content-Type': 'application/json'  , 
         'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
       } };
-    axios.put(url,'', config).then(response => {
+   // axios.put(url,'', config)
+    CouponService.fetchRedirectURl(couponId)
+    .then(response => {
       this.setState({
         isloading: false
       });
@@ -108,27 +116,29 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
     const self = this;
     const page = this.state.pageNumber + 1;
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-    axios.get("https://codesapi.coupons.com/token/")
-    .then(res => {
-     var token = res.data.data;
-     if(token == null || token == undefined)
-     {
-       token = ""
-     }
-     localStorage.setItem('token',token);
-    axios
-      .get(
-        `https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
-          page +
-          `&size=10`,  {
-            headers: {
-              'Authorization':token,
-              'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-            }}
-        // `https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
-        //   page +
-        //   `&size=10`
-      )
+    // axios.get("https://codesapi.coupons.com/token/")
+    // .then(res => {
+    //  var token = res.data.data;
+    //  if(token == null || token == undefined)
+    //  {
+    //    token = ""
+    //  }
+    //  localStorage.setItem('token',token);
+    // axios
+    //   .get(
+    //     `https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
+    //       page +
+    //       `&size=10`,  {
+    //         headers: {
+    //           'Authorization':token,
+    //           'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+    //         }}
+            
+    //         // `https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
+    //     //   page +
+    //     //   `&size=10`
+    //   )
+      CouponService.fetchCashbackCoupons(page)
       .then(res => {
         const coupons = res.data.data.content;
         //   const pageNumber = res.data.data.pageable.pageNumber;
@@ -148,8 +158,8 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
         self.setState({ coupons: JSON.parse(couponsdata) });
         //console.log(error.response)
       });
-    })
-    .catch(error => {});
+    // })
+    // .catch(error => {});
 
     // CouponService.fetchDeals(page + 1)
     //   .then((res) => {
@@ -166,17 +176,19 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
       const self = this;
     const page = this.state.pageNumber + 1;
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-        axios
-          .get(
-           // "https://codesapi.pdn.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-             "https://codesapi.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-               this.state.id +
-                "&page=" +page+"&size=10&sort=isCashback,desc&sort=endDate,desc"
-                ,{
-                  headers: {
-                    'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-                  }}
-          )
+        // axios
+        //   .get(
+        //    // "https://codesapi.pdn.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
+        //      "https://codesapi.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
+        //        this.state.id +
+        //         "&page=" +page+"&size=10&sort=isCashback,desc&sort=endDate,desc"
+        //         ,{
+        //           headers: {
+        //             'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+        //           }}
+        //   )
+        if (this.state.id !== undefined) {
+          CouponService.fetchCouponsByMerchants(page,this.state.id)
           .then(res => {
             const coupons = res.data.data.content;
            
@@ -195,6 +207,7 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
             this.setState({ coupons: JSON.parse(couponsdata) });
             //console.log(error.response)
           });
+        }
     
       }
 
@@ -208,18 +221,23 @@ var activated = this.state.activated;
 const couponId = this.state.couponId;
     // const activated= this.props.activated;
     // const type=this.props.type;
-if(activated !== 0)
-{
-  activated = "Activate " +activated +"% Cashback";
-}
-else if (activated == 0)
-{
-  activated = "Available Coupons"
-}
-else
-{
-  activated = "Loading...";
-}
+    if(this.state.isDisable === "true") {
+        if(activated !== 0)
+          {
+              activated = "Activate " +activated +"% Cashback";
+          }
+        else if (activated == 0)  
+          {
+              activated = "Available Coupons"
+          }
+        else
+          {
+              activated = "Loading...";
+          }
+    }
+    else {
+      activated = "Available Coupons"
+    }
 
     if (chk === 1) {
       if (!coupons) {

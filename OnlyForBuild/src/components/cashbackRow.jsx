@@ -1,7 +1,11 @@
 /*global safari*/
 import React from 'react';
 import axios from 'axios';
-
+import CouponService from "../services/couponService"
+import couponService from '../services/couponService';
+import ReportService from "../services/reportService";
+import CommissionService from "../services/commissionService"
+import {userProfile} from "../../utils/urls"
 
 class CashbackRow extends React.Component {
         constructor(props) {
@@ -25,58 +29,60 @@ userId = localStorage.getItem('userId');
             userId = "1";
         }
 
-        axios.get("https://codesapi.coupons.com/token/")
-        .then(res => {
-         var token = res.data.data;
-         if(token == null || token == undefined)
-         {
-           token = ""
-         }
-         axios.get(`https://codesapi.coupons.com/couponapi/coupons/isUsUser/web`
-         ,  {
-            headers: {
-              'Authorization':token
-            }})
-         .then(res => {
-    
+       
+couponService.fetchIsUSA()
+         .then(res => {   
         this.setState({ isDisable : res.data.data });
           });
-        });
-
         
-          axios.get(`https://codesapi.coupons.com/reportapi/consumer/cashback/details?consumerId=` +userId)
+
+        ReportService.fetchCashbackDetailsbyId(userId)
+       //   axios.get(`https://codesapi.coupons.com/reportapi/consumer/cashback/details?consumerId=` +userId)
        // axios.get(`https://codesapi.pdn.coupons.com/reportapi/consumer/cashback/details?consumerId=` + userId)
          .then(res => {
         var couponcashbackbalance = res.data.data.consumerCashbackBalance;
-        
+        if (couponcashbackbalance !== undefined) { 
+          this.setState({ consumerCashbackBalance : Number(couponcashbackbalance).toFixed(2) });
+        }
+        else {
+          this.setState({ consumerCashbackBalance : 0.00 });
+        }
 
-        this.setState({ consumerCashbackBalance : Number(couponcashbackbalance).toFixed(2) });
+        
           });
 
-          axios.get("https://codesapi.coupons.com/token/")
-          .then(res => {
-           var token = res.data.data;
-           if(token == null || token == undefined)
-           {
-             token = ""
-           }
-          axios.get(`https://codesapi.coupons.com/commissionapi/commission/processingCommission/web/` +userId
-          ,  {
-            headers: {
-              'Authorization':token
-            }})
+          // axios.get("https://codesapi.coupons.com/token/")
+          // .then(res => {
+          //  var token = res.data.data;
+          //  if(token == null || token == undefined)
+          //  {
+          //    token = ""
+          //  }
+          // axios.get(`https://codesapi.coupons.com/commissionapi/commission/processingCommission/web/` +userId
+          // ,  {
+          //   headers: {
+          //     'Authorization':token
+          //   }})
+          CommissionService.fetchCashbackProcessingById(userId)
           // axios.get(`https://codesapi.pdn.coupons.com/reportapi/consumer/cashback/details?consumerId=` + userId)
             .then(res => {
+              
            var couponprocesscashback = res.data.data.inProcessCashbackAmount;
-           
+        
+           if (couponprocesscashback !== undefined) {
            this.setState({ consumerCashbackPending : Number(couponprocesscashback).toFixed(2) });
+           }
+           else {
+            this.setState({ consumerCashbackPending : 0.00 });
+           }
              });
-            });
+          //  });
         }
 
     profileClicked(){
       safari.self.hide();
-      var newURL = "https://codesapi.coupons.com/coupon-codes/user/cashback-rewards/1";
+      // "https://codesapi.coupons.com/coupon-codes/user/cashback-rewards/1"
+      var newURL = userProfile;
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }

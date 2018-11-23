@@ -5,10 +5,11 @@ import axios from 'axios'
 import { debounce } from 'lodash';
 import disableScroll from 'disable-scroll';
 import Suggestion from "./suggestions";
-import { MERCHANT_SEARCH  } from '../../utils/urls'
+import { SEARCH_QUERY  } from '../../utils/urls'
 import { CASHBACK_SEARCH_ARRAY } from '../../utils/urls'
 import LoadingSpinner from './loading-spinner';
 import API from "../services/api";
+import CouponService from '../services/couponService'
 
 let browser = window.browser || window.safari;
 const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
@@ -16,19 +17,21 @@ const API_URL = 'https://api.pdn.netpace.net/'
 
 function getMerchantData(value) {
   // return axios("https://api.pdn.netpace.net/merchantapi/name/"+value);
-   return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/search?name="+value,  {
-    headers: {
-      'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-    }});
+  return CouponService.fetchMerchnatCashbackCouponStartingWith(value)
+  //  return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/search?name="+value,  {
+  //   headers: {
+  //     'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+  //   }});
 //  return axios("https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupon/search?name="+value);
  // return axios(MERCHANT_SEARCH+value);
 }
 
 function getCouponsData(merchantId) {
-  return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/merchants/"+merchantId,  {
-    headers: {
-      'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-    }});
+  return CouponService.fetchMaxCashBackCouponByMercahat(merchantId)
+  // return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/merchants/"+merchantId,  {
+  //   headers: {
+  //     'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+  //   }});
  //  return axios("https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupon/merchants/"+merchantId);
 //  return axios(CASHBACK_SEARCH_ARRAY+merchantId);
 }
@@ -230,7 +233,7 @@ if(e.key === 'Enter'){
       this.setState({
         isloading: false
       });
-      var newURL = "https://www.coupons.com/coupon-codes/search/?ids=&queryterm="+this.state.query;
+      var newURL = SEARCH_QUERY+this.state.query;
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }
@@ -265,12 +268,14 @@ else{
   activatedlinks.push(link);
 }
           localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
-        var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.results[i].id+'&consumerId=1';
-        const config = { headers: {'Content-Type': 'application/json'  , 
-        'Authorization': localStorage.getItem('token'),
-        'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-      } };
-        axios.put(url,'', config).then(response => {
+      //   var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.results[i].id+'&consumerId=1';
+      //   const config = { headers: {'Content-Type': 'application/json'  , 
+      //   'Authorization': localStorage.getItem('token'),
+      //   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+      // } };
+      CouponService.fetchRedirectURl(this.state.results[i].id)
+       // axios.put(url,'', config)
+       .then(response => {
           this.setState({
             isloading: false
           });
@@ -297,7 +302,7 @@ break;
       this.setState({
         isloading: false
       });
-      var newURL = "https://www.coupons.com/coupon-codes/search/?ids=&queryterm="+this.state.query;
+      var newURL = SEARCH_QUERY+this.state.query;
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }
@@ -450,7 +455,7 @@ handleClick(e) {
       }
         <input id="Javascript_example" type="text" placeholder="Search Store" ref={input => this.search = input} onChange={this.handleInputChange} onBlur={this.onBlur}  onClick={this.handleClick}  onKeyPress={this.keyEnter}  onKeyDown={this.handleKeyDown}  />
         {this.state.query.length>0 && this.state.query.trim().length>0 && this.state.focus &&
-        <a class="search" onClick={this.searchClicked}  href={"https://www.coupons.com/coupon-codes/search/?ids=&queryterm="+this.state.query}  ><span></span></a>
+        <a class="search" onClick={this.searchClicked}  href={SEARCH_QUERY+this.state.query}  ><span></span></a>
         }
         {results.length > 0  && this.state.query.length>0 && this.state.query.trim().length>0 &&
 

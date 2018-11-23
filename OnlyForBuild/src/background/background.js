@@ -3,6 +3,7 @@
 // import React from 'react';
 import axios from 'axios';
 import {MERCHANT_EXIST} from '../../utils/urls'
+import MerchantService from '../services/merchantService'
 
 let browser = window.browser || window.safari;
 localStorage.setItem('redirected', 0);
@@ -102,17 +103,16 @@ if(name==null || name == undefined)
 
 
    // axios.get('https://api.pdn.netpace.net/merchantapi/domain_url/exists?domainUrl='+name)
-   axios.get('https://codesapi.coupons.com/merchantapi/domain_url/exists?domainUrl='+name)
-   //axios.get(MERCHANT_EXIST+name)
+   MerchantService.isMerchantExist(name)
+  //axios.get('https://codesapi.coupons.com/merchantapi/domain_url/exists?domainUrl='+name)
     .then(res => {
         let merchant = res.data.data;
         //console.log("Merchent: "+merchant.id+" "+merchant.name);
         window.location.reload()
-
-
-        if(merchant!==null && JSON.stringify(merchant) !== "{}"){
+// alert(merchant.id)
+// alert(JSON.stringify(res.data));
+        if(merchant!==null && JSON.stringify(merchant) !== "{}" && merchant.id !==undefined){
           id=merchant.id;
-       
           localStorage.setItem('chk',1);
           localStorage.setItem('id', id);
             setRecentlyVisited(id,link);
@@ -157,6 +157,7 @@ if(name==null || name == undefined)
 localStorage.setItem('id', 0);
         }
     }).catch(error => {
+      //alert("error")
   //alert('ye chlayga error wala');
   localStorage.setItem('chk', 2);
   localStorage.setItem('id',0);

@@ -5,6 +5,8 @@ import { REDIRECTION,CDN } from '../../utils/urls'
 import axios from 'axios';
 import LoadingSpinner from './loading-spinner';
 import API from "../services/api";
+import CouponService from "../services/couponService"
+
 
 class MerchantItem extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class MerchantItem extends React.Component {
   }
   
 
-  merchantItemClicked(url,merchantId){
+  merchantItemClicked(id,merchantId){
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
    
   //  var link = new URL(this.state.results[i].domainUrl);
@@ -54,12 +56,14 @@ if(!actiii)
   this.setState({
     isloading: true
   });
-  const config = { headers: {'Content-Type': 'application/json' ,
-  'Authorization': localStorage.getItem('token'),
-  'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-}};
-console.log(url);
-  axios.put(url,'', config).then(response => {
+//   const config = { headers: {'Content-Type': 'application/json' ,
+//   'Authorization': localStorage.getItem('token'),
+//   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
+// }};
+// console.log(url);
+CouponService.fetchRedirectURl(id)
+  //axios.put(url,'', config)
+  .then(response => {
     self.setState({
       isloading: false
     });
@@ -96,7 +100,7 @@ console.log(url);
         return ([
           <div>
           {this.props.couponType !=="In-store" &&
-            <a onClick={()=>{this.merchantItemClicked(url,merchantId )}}  style={linkStyle} class="cursor">
+            <a onClick={()=>{this.merchantItemClicked(couponId,merchantId )}}  style={linkStyle} class="cursor">
             { isLoading &&
               <LoadingSpinner />
             }

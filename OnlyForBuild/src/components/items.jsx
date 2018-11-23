@@ -25,37 +25,6 @@ class Items extends React.Component {
           // pageNumber: nextProps.page
         });
       } 
-    // fetchMoreDeals(page) {
-    //   this.setState({loader:true});
-    
-    //     axios
-    //       .get(
-    //         // `https://api.pdn.netpace.net/couponapi/coupons/max_cashback_coupons/pages/?page=` +
-    //         //   page +
-    //         //   `&size=10`
-    //           `https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupons/pages/?page=` +
-    //           page +
-    //           `&size=10`
-    //       )
-    //       .then(res => {
-    //         const coupons = res.data.data.content;
-           
-    //         localStorage.setItem("a", JSON.stringify(coupons)); //chane this into chrome.storage.local api
-    //         this.setState({
-    //           coupons: this.state.coupons.concat(res.data.data.content),
-    //           pageNumber: res.data.data.pageable.pageNumber,
-    //           last: res.data.data.last,
-    //           loader:false
-    //         });
-    //       })
-    //       .catch(error => {
-    //         console.log("catching Error");
-    //         let couponsdata = localStorage.getItem("a");
-    //         this.setState({ coupons: JSON.parse(couponsdata) });
-    //         //console.log(error.response)
-    //       });
-    
-    //   }
 
     render() {
               const isloading = this.state.isloading;

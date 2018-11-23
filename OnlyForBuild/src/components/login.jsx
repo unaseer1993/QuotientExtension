@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import LoadingSpinner from './loading-spinner';
+import signin from '../services/signin';
 let email = '';
 let pass = '';
 class Login extends React.Component {
@@ -100,12 +101,13 @@ validateEmail(email)
     {
       if(this.validateEmail(email)){
       const self = this;
-      // axios.post(`http://websvc.westus.cloudapp.azure.com/clipapi/rest/users/sign-in`, {
+     // axios.post(`http://websvc.westus.cloudapp.azure.com/clipapi/rest/users/sign-in`, {
          axios.post(`https://codesapi.coupons.com/clipapi/rest/users/sign-in`, {
        
         email:email,
         password:pass
       })
+     // signin.sigin(email,pass)
       .then(function (response) {
         if (response.status === 200) {
           self.setState({
