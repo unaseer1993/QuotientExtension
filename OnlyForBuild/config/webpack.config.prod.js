@@ -60,6 +60,7 @@ module.exports = {
     app: [require.resolve('./polyfills'), paths.appIndexJs],
     background: [require.resolve('./polyfills'), './src/background/background.js'],
     notifier: [require.resolve('./polyfills'), './src/searchEngineNotifier/index.js']
+
     // activated: [require.resolve('./polyfills'), './src/notification/index.js']
   },
   output: {

@@ -60,6 +60,7 @@
 			<array>
 				<string>build/app.js</string>
 				<string>build/js/jquery-3.3.1.min.js</string>
+				<string>build/js/cryptop.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>
