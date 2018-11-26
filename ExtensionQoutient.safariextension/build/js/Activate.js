@@ -130,7 +130,6 @@ function chkMarchent(name){
   
      if(isus.data!=null & isus.meta.code==200){
     isUsUser = isus.data
-     alert(isUsUser);
      }
      else
      {
@@ -147,7 +146,7 @@ function chkMarchent(name){
                  async: false,
       dataType: 'json'
       }).responseJSON;
-      alert(JSON.stringify(d.data));
+      //alert(JSON.stringify(d.data));
       if(d.data!=null & d.meta.code==200){
       cashbackPercentage=d.data[0].cashbackPercentage;
       id = d.data[0].merchantId

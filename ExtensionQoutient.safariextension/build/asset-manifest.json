@@ -1,6 +1,4 @@
 {
-  "activate.js": "activate.js",
-  "activate.js.map": "activate.js.map",
   "app.js": "app.js",
   "app.js.map": "app.js.map",
   "background.js": "background.js",
