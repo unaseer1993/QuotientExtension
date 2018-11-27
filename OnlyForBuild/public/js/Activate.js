@@ -1,6 +1,8 @@
 /*global safari*/
 
 var baseUrl  = "https://codesapiweb.coupons.com";
+var isUsUserUrl = "/couponapi/coupons/isUsUser/plugin/"
+var domainUrl = "/couponapi/coupons/max_cashback_coupon/domain_url/plugin?domainUrl=";
 var id=0;
 var cashbackPercentage = 0;
 
@@ -12,20 +14,11 @@ var link=getTabUrl();
 var newDiv;
 var exist=chkMarchent(link);
 
-
-//var cb = getCashBack(); 
 if(exist !== 0  )
 {
-//var newDiv = $('<div class="extension-container"> <div  class="wrapper_1 z-index"> <div class="get-up-to-box"> <div class="left-section"><img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"> </div><div class="right-section"><div class="static-box"><a id = "availble-noti" href="javascript:;" class="cash-back-btn">Get up to 6% Cash Back</a><a id= "later" href="javascript:;" class="later"> I&#39;ll get it later</a></div></div></div></div>');
   newDiv = $('<div class="extension-container dark-theme-activates" > <div  class="wrapper_1 z-index main-radius " style="background: #fff;"> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"><img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"> </div><div class="right-section" style="margin: auto;"> <div class="static-box" id="AvailableDiv"><a id = "availble-noti" href="javascript:;"  class="cash-back-btn latter">Get Up to '+exist+'% Cash Back</a><a id= "later" href="javascript:;" class="later" > I&#39;ll get it later</a><div></div></div> <div class="extension-container hideDiv dark-theme-activates" id="ActivatedDiv"> <div class="wrapper_1 z-index main-radius "> <img id="close-button" src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/close.svg" class="top-close-btn" /> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"> <img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"></div><div class="right-section activation-padding">  <div class="activated-cashback">Cash Back Activated</div></div></div></div></div>');
 
-  // newDiv = $('<div class="extension-container"> <div class="wrapper_1 z-index "> <div onclick="myFunction()" ><img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/close.svg" class="top-close-btn" /></div> <div class="get-up-to-box"> <div class="left-section"> <img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"></div><div class="right-section activation-padding">  <div class="activated-cashback">Cash Back Is Activated</div></div></div></div></div>');
-
-// var activatted=$('<div class="extension-container"> <div class="wrapper_1 z-index "> <img id="close-button" onclick="closePop()" src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/close.svg" onclick="parentNode.remove()" class="top-close-btn" /> <div class="get-up-to-box"> <div class="left-section"> <img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"></div><div class="right-section activation-padding">  <div class="activated-cashback">Cash Back Is Activated</div></div></div></div></div>');
-
 var html= $("html");
-
-//if(exist){
 
 var divExist = localStorage.getItem('chkBox');
 var login = localStorage.getItem('userid');
@@ -35,8 +28,6 @@ if(login!==null)
 {
 if(divExist!== null)
 {
-  //var urlLinks = localStorage.getItem('urlitems');
-
   if(divExist == 1)
   {
   }
@@ -44,13 +35,11 @@ if(divExist!== null)
     
 if(activated=='Cashback Activated')
 {
-  // html.append(activatted);
    if(window.top === window)
   {
   html.append(newDiv);
   $( "#ActivatedDiv" ).addClass( "showDiv" )
   $( "#AvailableDiv" ).addClass( "hideDiv" )
- // newDiv.delay( 2000 ).fadeOut( 1000 );
   }
 }
 else if (activated == 'Available Coupons')
@@ -65,22 +54,18 @@ else if (activated == 'Available Coupons')
 }
 }
 }
-//}
+
 
 
 
 
 $("#availble-noti").click(function(){
-  //  safari.self.tab.dispatchMessage('message');
 localStorage.setItem('activated','Cashback Activated');
 
 safari.self.tab.dispatchMessage('activatedlinks',id);
 $( "#ActivatedDiv" ).addClass( "showDiv" );
  $( "#AvailableDiv" ).addClass( "hideDiv" );
   newDiv.delay( 2000 ).fadeOut( 1000 );
-  //html.delay( 1100 ).append(activatted);
-  
-  //activatted.delay( 5000 ).fadeOut( 1000 )
 });
 
 
@@ -117,9 +102,9 @@ function getTabUrl(){
 }
 
 function chkMarchent(name){
-   var apiUrl = "/couponapi/coupons/isUsUser/web/";
-  let request =  baseUrl +apiUrl;
-   let header =  ajaxTokenHandler(apiUrl,"");
+   ;
+  let request =  baseUrl +isUsUserUrl;
+   let header =  ajaxTokenHandler(isUsUserUrl,"");
   var isus = $.ajax({
     url: request,
    async: false,
@@ -136,9 +121,9 @@ function chkMarchent(name){
        isUsUser = "true"
      }
     if (isUsUser == "true") {
-      var apiUrl = "/couponapi/coupons/max_cashback_coupon/domain_url/web?domainUrl=";
-      let request =  baseUrl +apiUrl+name;
-      let header =  ajaxTokenHandler(apiUrl,name);
+      
+      let request =  baseUrl +domainUrl+name;
+      let header =  ajaxTokenHandler(domainUrl,name);
       var d = $.ajax({
         url: request,
         headers: {"X-SIGNATURE": header.signature,
@@ -163,73 +148,6 @@ function chkMarchent(name){
 
   return cashbackPercentage;
   }
-
-//   function getCashBack()
-//   {
-//     var token;
-//     var isUsUser;
-//   const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-//  var t=  $.ajax({
-//   url: "https://codesapi.coupons.com/token/",
-//   async: false,
-//   dataType: 'json'
-//  }).responseJSON;
-
-//  if(t.data!=null & t.meta.code == 200)
-//  {
-// token = t.data;
-//  }
-//  else
-//  {
-// token = "";
-//  }
-//  var isus = $.ajax({
-
-//   url: "https://codesapi.coupons.com/couponapi/coupons/isUsUser/web",
-//   async: false,
-//          beforeSend: function(request) {
-//         request.setRequestHeader("Authorization",token)
-//       },
-//   dataType: 'json'
-//   }).responseJSON;
-
-//   if(isus.data!=null & isus.meta.code==200){
-//   isUsUser = isus.data
-//   }
-//   else
-//   {
-//     isUsUser = "true"
-//   }
-// if(isUsUser == "true")
-// {
-//     var d = $.ajax({
-
-//       url: api+"/couponapi/coupons/max_cashback_coupon/web/"+id,
-//       async: false,
-//          beforeSend: function(request) {
-//         request.setRequestHeader("Authorization",token,
-//         "X-LOCATION-TIME", `${getTodaysDate()} ${getFormattedTime(currentUnixTimeStamp)}`);
-//       },
-//       dataType: 'json'
-//       }).responseJSON;
-
-//       if(d.data!=null & d.meta.code==200){
-//       var cB=d.data.cashbackPercentage;
-//       }
-//       else
-//       {
-//         cB = 0;
-//       }
-//     }
-//     else
-//     {
-//       cB = 0;
-//     }
-
-
-//       return cB;
-
-//   }
 
   function getTodaysDate() {
     
@@ -323,14 +241,10 @@ else if(msgEvent.name === 'userid')
 else if(msgEvent.name === 'activated')
 { 
  localStorage.setItem('activated','Cashback Activated');
-//call();
 }
 else if(msgEvent.name === 'normal')
 { 
   localStorage.setItem('activated','Available Coupons');
-  //call();
-  //html.append(newDiv);
-  //$( "#ActivatedDiv" ).addClass( "showDiv" )
 }
 
 }
