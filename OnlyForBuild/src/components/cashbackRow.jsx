@@ -35,7 +35,7 @@ couponService.fetchIsUSA()
           });
         
 //userId
-          ConsumerService.fetchCashbackDetailsbyId(1214)
+          ConsumerService.fetchCashbackDetailsbyId(userId)
          .then(res => {
         var couponcashbackbalance = res.data.data.consumerCashbackBalance;
         if (couponcashbackbalance !== undefined) { 
@@ -48,7 +48,7 @@ couponService.fetchIsUSA()
         
           });
 //userId
-          ConsumerService.fetchCashbackProcessingById(1214)
+          ConsumerService.fetchCashbackProcessingById(userId)
             .then(res => {
               
            var couponprocesscashback = res.data.data.inProcessCashbackAmount;

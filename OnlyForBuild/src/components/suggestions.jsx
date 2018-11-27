@@ -27,6 +27,9 @@ componentDidMount(){
    var activatedlinks = [];   
     var actiii = false;
 
+    CouponServices.fetchIsUSA()
+     .then(response => {
+       if (response.data.data === "true") {
         if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
@@ -47,7 +50,8 @@ componentDidMount(){
             activatedlinks.push(this.state.mId);
           }
                 localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));    
-
+        }
+      });
           this.setState({
             isloading: true
             });

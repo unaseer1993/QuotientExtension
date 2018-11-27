@@ -156,7 +156,9 @@ if(e.key === 'Enter'){
       if(this.state.query===this.state.results[i].merchantName && this.state.currentIndex!==-1) 
       {
         var link = this.state.results[i].merchantId;
-
+        CouponService.fetchIsUSA()
+        .then(response => {
+          if (response.data.data === "true") {
         var activatedlinks = [];
          var actiii = false;
     if(localStorage.getItem('activatedlinks')!==null)
@@ -179,7 +181,8 @@ else{
   activatedlinks.push(link);
 }
           localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
-
+          }
+        });
       CouponService.fetchRedirectURl(this.state.results[i].id)
        .then(response => {
           this.setState({
