@@ -1,5 +1,4 @@
 import api from './api';
-import {tokenHandler} from './auth'
 
 const service='merchantapi';
 

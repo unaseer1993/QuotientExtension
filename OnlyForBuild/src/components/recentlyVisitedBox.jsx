@@ -1,6 +1,5 @@
 /*global safari*/
 import React from 'react';
-import axios from 'axios';
 
 class RecentlyVistedBox extends React.Component {
 
@@ -13,25 +12,6 @@ class RecentlyVistedBox extends React.Component {
 
   }
 
-   /*  constructor(props){
-        /* super(props);
-        this.state={
-            link: ''
-        }
-
-    } */
-    /* componentWillMount(){
-
-        /* axios.get('http://websvc.westus.cloudapp.azure.com/merchantapi/'+this.props.id)
-        .then(res => {
-            let merchant = res.data.data;
-            console.log(merchant.domainUrl);
-            this.setState({link: merchant.domainUrl});
-
-        }).catch(error => {});
-
-
-    } */
         render(){
            var id=this.props.id;
            var link = this.props.link;

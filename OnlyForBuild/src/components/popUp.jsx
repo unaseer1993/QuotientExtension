@@ -12,8 +12,7 @@ import { CDN } from "../../utils/urls";
 import Error from "./error.jsx";
 import LoadingSpinner from "./loading-spinner";
 import InfiniteScroll from 'react-infinite-scroller';
-import axios from "axios";
-import API from "../services/api";
+
 import CouponService from "../services/couponService"
 /*global safari*/
 
@@ -51,7 +50,6 @@ class PopUp extends React.Component {
          .then(res => {   
         this.setState({ isDisable : res.data.data });
           });
-  //  window.addEventListener('scroll', function () {console.log(window.scrollX, window.scrollY)})
   }
 
   merchantItemClicked(Merchantid,activated,couponId){
@@ -84,15 +82,10 @@ if(!actiii)
              
                       
 
-let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+couponId+'&consumerId=1';
-      const self = this;
+     const self = this;
     this.setState({
       isloading: true
     });
-    const config = { headers: {'Content-Type': 'application/json'  , 
-        'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-      } };
-   // axios.put(url,'', config)
     CouponService.fetchRedirectURl(couponId)
     .then(response => {
       this.setState({
@@ -116,34 +109,10 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
     const self = this;
     const page = this.state.pageNumber + 1;
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-    // axios.get("https://codesapi.coupons.com/token/")
-    // .then(res => {
-    //  var token = res.data.data;
-    //  if(token == null || token == undefined)
-    //  {
-    //    token = ""
-    //  }
-    //  localStorage.setItem('token',token);
-    // axios
-    //   .get(
-    //     `https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
-    //       page +
-    //       `&size=10`,  {
-    //         headers: {
-    //           'Authorization':token,
-    //           'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-    //         }}
-            
-    //         // `https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=` +
-    //     //   page +
-    //     //   `&size=10`
-    //   )
+
       CouponService.fetchCashbackCoupons(page)
       .then(res => {
         const coupons = res.data.data.content;
-        //   const pageNumber = res.data.data.pageable.pageNumber;
-        //   const last = res.data.data.last;
-        //console.log(res);
         localStorage.setItem("a", JSON.stringify(coupons)); //chane this into chrome.storage.local api
         self.setState({
           coupons: this.state.coupons.concat(res.data.data.content),
@@ -158,35 +127,14 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
         self.setState({ coupons: JSON.parse(couponsdata) });
         //console.log(error.response)
       });
-    // })
-    // .catch(error => {});
 
-    // CouponService.fetchDeals(page + 1)
-    //   .then((res) => {
-    //     this.setState({
-    //       coupons: this.state.coupons.concat(res.data.data.content),
-    //       page: res.data.data.pageable.pageNumber,
-    //       isLoading: false,
-    //       hasMore: !res.data.data.last
-    //     });
-    //   });
   }
 
    fetchMoreMerchants() {
       const self = this;
     const page = this.state.pageNumber + 1;
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-        // axios
-        //   .get(
-        //    // "https://codesapi.pdn.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-        //      "https://codesapi.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-        //        this.state.id +
-        //         "&page=" +page+"&size=10&sort=isCashback,desc&sort=endDate,desc"
-        //         ,{
-        //           headers: {
-        //             'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-        //           }}
-        //   )
+     
         if (this.state.id !== undefined) {
           CouponService.fetchCouponsByMerchants(page,this.state.id)
           .then(res => {
@@ -219,8 +167,7 @@ let url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?coupon
     const last = this.state.last;
 var activated = this.state.activated;
 const couponId = this.state.couponId;
-    // const activated= this.props.activated;
-    // const type=this.props.type;
+
     if(this.state.isDisable === "true") {
         if(activated !== 0)
           {
@@ -268,7 +215,7 @@ const couponId = this.state.couponId;
               }
             }
             if (!actiii) {
-              //activated = "Available Coupons";
+
               var iconUri =
                 safari.extension.baseURI + "Icons/icon-available@2x.png";
               safari.extension.toolbarItems[0].image = iconUri;
@@ -279,7 +226,6 @@ const couponId = this.state.couponId;
               );
             }
           } else {
-          //  activated = "Available Coupons";
             var iconUri =
               safari.extension.baseURI + "Icons/icon-available@2x.png";
             safari.extension.toolbarItems[0].image = iconUri;

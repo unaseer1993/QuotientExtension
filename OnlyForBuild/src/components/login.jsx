@@ -22,25 +22,6 @@ class Login extends React.Component {
 
   }
 
-  // updateEmailValue(e){
-  //    // this.setState({['emailValue']: e.target.value})
-  //      this.setState({emailValue: e.target.value}, () => {
-  //        email = this.state.emailValue;
-  //       // alert(email);
-  //      });
-  //   //   email = e.target.value;
-  //
-  // }
-  //
-  // updatePasswordValue(e){
-  //    // this.setState({['passwordValue']: e.target.value})
-  //    this.setState({passwordValue: e.target.value}, () => {
-  //      pass = this.state.passwordValue;
-  //     // alert(email);
-  //    });
-  //
-  // }
-
   keyEnter(e)
   {
 if(e.key === 'Enter'){
@@ -101,12 +82,7 @@ validateEmail(email)
     {
       if(this.validateEmail(email)){
       const self = this;
-     // axios.post(`http://websvc.westus.cloudapp.azure.com/clipapi/rest/users/sign-in`, {
-      //    axios.post(`https://codesapi.coupons.com/clipapi/rest/users/sign-in`, {
-       
-      //   email:email,
-      //   password:pass
-      // })
+ 
       signin.sigin(email,pass)
       .then(function (response) {
         if (response.status === 200) {
@@ -117,7 +93,6 @@ validateEmail(email)
           localStorage.setItem("userStatus",1);
           localStorage.setItem("userEmail",response.data.email);
            localStorage.setItem("userId",response.data.cbId);
-          // alert(response.data.email);
           window.location.reload()
 
         }
@@ -139,18 +114,14 @@ validateEmail(email)
       document.getElementById('emailerrmsg').innerHTML = emailstr;
     }
   }
-    // this.getUserOth();
+
   }
 
-  // getUserOth(){
-  //
-  // }
   hide(){
     safari.self.hide()
   }
   render(){
     const isLoading = this.state.isloading;
-//https://www.pdn.netpace.net/coupon-codes/authentication/sign-up/
     return ([
       <div class="loading-wrapper">
       { isLoading &&

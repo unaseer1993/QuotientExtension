@@ -1,8 +1,8 @@
 /*global browser*/
 /*global safari*/
 import React from 'react';
-import CouponService from '../services/couponService'
 import couponService from '../services/couponService';
+import {HELP_URL,BASE_URL} from '../../utils/urls'
 
 class Footer extends React.Component {
 
@@ -34,22 +34,14 @@ this.setState({ islogout : true})
 
     settingClicked() {
         safari.self.hide();
-      //  window.open('settings.html', '_blank', '');
-        // window.open('settings.html')
-        // var newURL = safari.extension.baseURI + "build/settings.html";
          var targetWin = safari.application.activeBrowserWindow.openTab();
          targetWin.url = safari.extension.baseURI + 'build/settings.html';
-        // targetWin.openTab().url = newURL;
-        // browser.tabs.create({
-        //     "url": "/settings.html",
-        //   });
-
 
         }
 
         helpClicked(){
           safari.self.hide();
-          var newURL = "https://couponswest.netpace.co/coupon-codes/user/customer-service/";
+          var newURL = HELP_URL;
           var targetWin = safari.application.activeBrowserWindow;
           targetWin.openTab().url = newURL;
 
@@ -67,14 +59,10 @@ this.setState({ islogout : true})
         localStorage.setItem('userStatus',0);
         localStorage.removeItem('activated');
         localStorage.removeItem('activatedlinks');
-        var newURL = "https://couponseast.netpace.co/coupon-codes/";
+        var newURL = BASE_URL;
         var targetWin = safari.application.activeBrowserWindow;
         targetWin.openTab().url = newURL;
 
-        // if(typeof safari.application.activeBrowserWindow.activeTab.url !== 'undefined')
-        // {
-        //     safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('logout');
-        // }
         window.location.reload();
         }
 

@@ -8,10 +8,10 @@ export default {
         return api.get(service+'/email?email='+email);
     },
     fetchCashbackProcessingById(id){   
-        return api.get(service+'/commission/processingCommission/web/'+id);  
+        return api.get(service+'/commission/processingCommission/plugin/'+id);  
     },
     fetchCashbackDetailsbyId(id){
-    return api.get(service+'/consumer/cashback/profile/web?consumerId='+id);
+    return api.get(service+'/consumer/cashback/profile/plugin?consumerId='+id);
     }
 
 

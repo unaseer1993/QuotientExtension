@@ -1,13 +1,10 @@
 /*global browser*/
 /*global safari*/
 import React,{Fragment} from 'react';
-import axios from 'axios';
 import LoadingSpinner from './loading-spinner';
-import API from "../services/api";
 import CouponServices from "../services/couponService"
 
-let browser = window.browser || window.safari;
-const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
+
 class Suggestion extends React.Component{
     constructor(props) {
     super(props);
@@ -21,13 +18,7 @@ class Suggestion extends React.Component{
 
     }
 componentDidMount(){
-        const merchant = this.props.merchant;
-        // console.log("length is "+this.props.merchantLength);
-        console.log("will recive");
-        console.log(merchant);
-        // alert(merchant);
         this.setState({mId: this.props.merchant.merchantId});
-        // this.setState({domailUrl: this.props.merchant.domailUrl});
         this.setState({cId: this.props.merchant.id});
 }
 
@@ -35,8 +26,7 @@ componentDidMount(){
     
    var activatedlinks = [];   
     var actiii = false;
-    // alert(this.state.mId);
-    // alert(this.state.cId);
+
         if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
@@ -61,21 +51,15 @@ componentDidMount(){
           this.setState({
             isloading: true
             });
-      //       var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.cId+'&consumerId=1';
-      //    const config = { headers: {'Content-Type': 'application/json'  , 
-      //    'Authorization': localStorage.getItem('token'),
-      //    'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-      //  } };
- //alert("Click")
+     
  CouponServices.fetchRedirectURl(this.state.cId)
-     // axios.put(url,'', config)
+
       .then(response => {
         this.setState({
           isloading: false
         });
         safari.self.hide();
         window.location.reload();
-     //   alert(response.data.data.redirectUrl);
           var newURL = response.data.data.redirectUrl;
           var targetWin = safari.application.activeBrowserWindow;
           targetWin.openTab().url = newURL;

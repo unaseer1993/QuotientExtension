@@ -1,10 +1,7 @@
 /*global chrome*/
 /*global safari*/
 import React from "react";
-import axios from "axios";
 import PopUp from "./popUp";
-import Login from "./login";
-import API from "../services/api";
 import CouponService from "../services/couponService"
 
 class App extends React.Component {
@@ -28,7 +25,6 @@ class App extends React.Component {
     let chkResult;
     var chkboxvalue = localStorage.getItem("chkbox");
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-    //alert(API.getFormattedTime(currentUnixTimeStamp));
 
     if (
       typeof safari.application.activeBrowserWindow.activeTab.url !==
@@ -105,35 +101,14 @@ class App extends React.Component {
     }
 
     this.setState({ chk: chkResult}, () => {
-      // alert(this.state.chk);
-//chkResult
+    
       if (self.state.chk == 2) {
-//         axios.get("https://codesapi.coupons.com/token/")
-//  .then(res => {
-//   var token = res.data.data;
-//   if(token == null || token == undefined)
-//   {
-//     token = ""
-//   }
-  // localStorage.setItem('token',res.data.data)
         var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
         safari.extension.toolbarItems[0].image = iconUri;
-        // axios
-        //   .get(
-        //  // `https://api.pdn.netpace.net/couponapi/coupons/max_cashback_coupons/pages/web/?page=0&size=10`
-        //  `https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupons/pages/web/?page=0&size=10`
-        //         ,{
-        //           headers: {
-        //             'Authorization':token,
-        //             'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-        //           }}
-        //   )
+     
         CouponService.fetchCashbackCoupons(0)
           .then(res => {
             const coupons = res.data.data.content;
-            // const pageNumber = res.data.data.pageable.pageNumber;
-            // const last = res.data.data.last;
-            //console.log(res);
             localStorage.setItem("a", JSON.stringify(coupons)); //chane this into chrome.storage.local api
             self.setState({
               coupons: res.data.data.content,
@@ -145,24 +120,13 @@ class App extends React.Component {
             console.log("catching Error");
             let couponsdata = localStorage.getItem("a");
             self.setState({ coupons: JSON.parse(couponsdata) });
-            //console.log(error.response)
           });
-        // })
-        // .catch(error => {
-       
-        //    });
+
       } else if (self.state.chk == 1) {
         var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
         safari.extension.toolbarItems[0].image = iconUri;
-//merchantID
 CouponService.fetchMaxCashBackCouponByMercahat(merchantID)
-// axios.get('https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/web/' +merchantID
-// ,{
-//   headers: {
-//     'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-//   }})
 .then(res => {
-//alert(JSON.stringify(res.data.data.cashbackPercentage));
 if(res.data.data.cashbackPercentage !== undefined)
 {
 this.setState({activated:res.data.data.cashbackPercentage,
@@ -175,33 +139,14 @@ else
 }
 
 }).catch(error => {
-//alert(JSON.stringify(error));
 this.setState({activated:0});
 });
         this.setState({ id: merchantID }, () => {
           self.setState({ id: merchantID });
-          // axios
-          //   .get(
-          //    // "https://codesapi.pdn.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-          //    "https://codesapi.coupons.com/couponapi/coupons/search/pages/merchant?title=&merchant=" +
-          //       self.state.id +
-          //        "&page=0&size=10&sort=isCashback,desc&sort=endDate,desc"
-          //        ,{
-          //         headers: {
-          //           'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-          //         }}
-          //       //  ,{
-          //       //   headers: {
-          //       //     'X-LOCATION-TIME':'2018-10-02 09:55:00+0400' 
-          //       //   }}
-          //   )
             CouponService.fetchCouponsByMerchants(0,self.state.id)
             .then(res => {
-              //console.log(res);
               let coupon = res.data.data;
-              //console.log(res.data);
-              localStorage.setItem("b", JSON.stringify(coupon));
-            //  self.setState({ coupons: coupon });
+              localStorage.setItem("b", JSON.stringify(coupon))
               self.setState({
                 coupons: res.data.data.content,
                 pageNumber: res.data.data.pageable.pageNumber,
@@ -212,8 +157,6 @@ this.setState({activated:0});
             .catch(error => {
               let couponsdata = localStorage.getItem("b");
               self.setState({ coupons: JSON.parse(couponsdata) });
-              console.log("catching Error");
-              //console.log(error.response)
             });
         });
       } else {
@@ -228,8 +171,6 @@ this.setState({activated:0});
   }
 
   render() {
-    // console.log("redering: "+this.state.id);
-
     return (
       <PopUp
         coupons={this.state.coupons}

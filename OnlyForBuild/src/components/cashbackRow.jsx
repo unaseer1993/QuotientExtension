@@ -1,7 +1,6 @@
 /*global safari*/
 import React from 'react';
-import axios from 'axios';
-import CouponService from "../services/couponService"
+import ConsumerService from "../services/consumerService" 
 import couponService from '../services/couponService';
 import ReportService from "../services/reportService";
 import CommissionService from "../services/commissionService"
@@ -36,9 +35,7 @@ couponService.fetchIsUSA()
           });
         
 
-        ReportService.fetchCashbackDetailsbyId(userId)
-       //   axios.get(`https://codesapi.coupons.com/reportapi/consumer/cashback/details?consumerId=` +userId)
-       // axios.get(`https://codesapi.pdn.coupons.com/reportapi/consumer/cashback/details?consumerId=` + userId)
+          ConsumerService.fetchCashbackDetailsbyId(userId)
          .then(res => {
         var couponcashbackbalance = res.data.data.consumerCashbackBalance;
         if (couponcashbackbalance !== undefined) { 
@@ -51,20 +48,7 @@ couponService.fetchIsUSA()
         
           });
 
-          // axios.get("https://codesapi.coupons.com/token/")
-          // .then(res => {
-          //  var token = res.data.data;
-          //  if(token == null || token == undefined)
-          //  {
-          //    token = ""
-          //  }
-          // axios.get(`https://codesapi.coupons.com/commissionapi/commission/processingCommission/web/` +userId
-          // ,  {
-          //   headers: {
-          //     'Authorization':token
-          //   }})
-          CommissionService.fetchCashbackProcessingById(userId)
-          // axios.get(`https://codesapi.pdn.coupons.com/reportapi/consumer/cashback/details?consumerId=` + userId)
+          ConsumerService.fetchCashbackProcessingById(userId)
             .then(res => {
               
            var couponprocesscashback = res.data.data.inProcessCashbackAmount;
@@ -81,15 +65,11 @@ couponService.fetchIsUSA()
 
     profileClicked(){
       safari.self.hide();
-      // "https://codesapi.coupons.com/coupon-codes/user/cashback-rewards/1"
       var newURL = userProfile;
       var targetWin = safari.application.activeBrowserWindow;
       targetWin.openTab().url = newURL;
     }
 
-// {this.state.consumerCashbackBalance}
-
-// {this.state.consumerCashbackPending}
     render() {
         return (
         <div className="cashback-row cashback-row-dark-theme" >

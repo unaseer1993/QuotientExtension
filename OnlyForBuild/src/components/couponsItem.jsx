@@ -1,7 +1,5 @@
 /*global safari*/
 import React from 'react';
-import axios from 'axios';
-import API from "../services/api";
 import LoadingSpinner from './loading-spinner';
 import CouponService from "../services/couponService"
 
@@ -16,8 +14,6 @@ class CouponsItem extends React.Component {
   merchantItemClicked(id,couponType,Merchantid){
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
     var activatedlinks = [];
-    // if(typeof safari.application.activeBrowserWindow.activeTab.url !== 'undefined')
-    //       {    
             if(couponType)
              {
 
@@ -50,11 +46,6 @@ if(!actiii)
     this.setState({
       isloading: true
     });
-  //   const config = { headers: {'Content-Type': 'application/json',
-  //   'Authorization': localStorage.getItem('token') ,
-  //   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-  // } };
-   // axios.put(url,'', config).
     CouponService.fetchRedirectURl(id)
     .then(response => {
       self.setState({
@@ -78,10 +69,7 @@ if(!actiii)
         const title = this.props.title;
         const percentage = this.props.percentage;
         const id = this.props.id;
-        // const couponId=this.props.couponId;
-     //  const url='https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+id+'&consumerId=1';
-      //  const url='https://codesapi.pdn.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+id+'&consumerId=1';
-        const type=this.props.type;
+          const type=this.props.type;
         const code=this.props.code;
         const date=this.props.date;
         const exclusive=this.props.exclusive;
@@ -93,8 +81,6 @@ if(!actiii)
         var linkStyle = {
             textDecoration: 'none'
           };
-        //console.log(id+ "coupon id");
-        //console.log(url);
               return (
             <a   style={linkStyle}  class="cursor">
             { isLoading &&
@@ -160,6 +146,5 @@ if(!actiii)
     }
 
 }
-//product-heading
 
 export default CouponsItem;

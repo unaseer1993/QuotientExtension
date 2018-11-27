@@ -4,11 +4,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Notifire from './notifier';
-import merchantService from '../services/merchantService';
 import couponsService from '../services/couponService';
 import $ from 'jquery';
-import axios from 'axios'
-import API from "../services/api";
+
 
 
 
@@ -24,26 +22,12 @@ function render (){
 
     element.prepend(app);
         for(let i=0;i<element.length;i++){
-            // axios
-            // .get(
-            //   "https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/domain_url?domainUrl="+element[i].hostname,  {
-            //       headers: {
-            //         'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-            //       }})
             couponsService.fetchCashbackCouponByMerchant(element[i].hostname)
              .then((res)=>{
-                console.log(element[i].hostname);
-                console.log(res);
                 if(res.data.data[0] && res.data.data[0].merchantId){
                     const id= res.data.data[0].merchantId;
-                    //couponsService.fetchMaxCashBackCouponByMercahat(id).then((max)=>{
-                        //console.log(max);
-                        //if(max.data.data && max.data.data[0].cashbackPercentage){
                             const cb = res.data.data[0].cashbackPercentage;
                             ReactDOM.render(<Notifire cB ={cb} />, document.getElementsByClassName('notifire')[i] );
-                        //}
-
-                    //});
                 }
 
             });

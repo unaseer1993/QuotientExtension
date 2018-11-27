@@ -20,9 +20,6 @@ class Coupons extends React.Component {
       componentWillReceiveProps(nextProps) {
         this.setState({
           coupons: nextProps.coupons
-        //   last: nextProps.last,
-        //   pageNumber: nextProps.page, 
-        //   id:nextProps.id
         });
       } 
    
@@ -31,8 +28,6 @@ class Coupons extends React.Component {
     
         let isloading = true;
         const coupons = this.state.coupons;
-        // const pageNumber = this.state.pageNumber;
-        // const last = this.state.last;
 
         if(coupons && coupons.length!==0)
         {
@@ -65,18 +60,10 @@ class Coupons extends React.Component {
              </Fragment>   );
     }
 
-        //    {coupons.length!==0 && !last  && <a onClick={()=>{this.fetchMoreDeals(pageNumber)}} class="load-more">Load more</a>} 
-                //    { 
-                // this.state.loader && 
-                // <LoadingSpinner nocss={true} />
     convertDate(date){
         moment.locale();
-        //const dt = '1530297904493';
-        //debugger;
         const dt = date;
         const updatedDate = moment.unix(dt / 1000).format('MM/DD/YYYY');
-        //this.props.data.endDate = updatedDate;
-        //console.log(updatedDate);
         return updatedDate;
     }
 
@@ -85,11 +72,9 @@ class Coupons extends React.Component {
         if(exclusive){
             string="Exclusive";
         }
-       // console.log(string+" exclusive");
         return string;
     }
     couponId(id){
-       // console.log("in appp: "+id);
         return id;
     }
 

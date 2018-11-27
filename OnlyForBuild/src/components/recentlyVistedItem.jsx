@@ -20,31 +20,19 @@ class RecentlyVistedItem extends React.Component {
         stack.push(0);
         stack.push(0);
 
-        // chrome.storage.local.get(['stack'], (result) => {
-      // localStorage.getItem(['stack'], (result) => {
-            //console.log("rVI");
-            //console.log(result);
-
 if( localStorage.getItem('stack')!== null)
 {
 var result =  localStorage.getItem('stack');
 
             stack = result;
             stack = JSON.parse(stack);
-// alert("REcentlyvisited.sx"+stack.length);
             let n = stack.length;
  
             if (n % 2 !== 0) {
                 let rem = n % 2;
                 n = n - rem;
-                //console.log("Even"+n);
             }
-            // alert(stack.count);
-            // alert(stack[0]);
             for (var i = 0; i < n; i += 2) {
-                // this.setState({ items:  <RecentlyVistedRow id1={stack.pop()} id2={stack.pop()} /> }, () => {
-                  // alert(i);
-                // });
                  this.state.items.push(<RecentlyVistedRow id1={stack.pop()} id2={stack.pop()} />);
 
             }

@@ -1,39 +1,21 @@
 /*global browser*/
 /*global safari*/
 import React, { Component } from 'react';
-import axios from 'axios'
 import { debounce } from 'lodash';
 import disableScroll from 'disable-scroll';
 import Suggestion from "./suggestions";
 import { SEARCH_QUERY  } from '../../utils/urls'
-import { CASHBACK_SEARCH_ARRAY } from '../../utils/urls'
 import LoadingSpinner from './loading-spinner';
-import API from "../services/api";
 import CouponService from '../services/couponService'
 
 let browser = window.browser || window.safari;
-const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-const API_URL = 'https://api.pdn.netpace.net/'
 
 function getMerchantData(value) {
-  // return axios("https://api.pdn.netpace.net/merchantapi/name/"+value);
   return CouponService.fetchMerchnatCashbackCouponStartingWith(value)
-  //  return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/search?name="+value,  {
-  //   headers: {
-  //     'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-  //   }});
-//  return axios("https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupon/search?name="+value);
- // return axios(MERCHANT_SEARCH+value);
 }
 
 function getCouponsData(merchantId) {
   return CouponService.fetchMaxCashBackCouponByMercahat(merchantId)
-  // return axios("https://codesapi.coupons.com/couponapi/coupons/max_cashback_coupon/merchants/"+merchantId,  {
-  //   headers: {
-  //     'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-  //   }});
- //  return axios("https://codesapi.pdn.coupons.com/couponapi/coupons/max_cashback_coupon/merchants/"+merchantId);
-//  return axios(CASHBACK_SEARCH_ARRAY+merchantId);
 }
 
 
@@ -56,7 +38,6 @@ class Search extends React.Component {
     this.onMouseOver=this.onMouseOver.bind(this);
     this.onMouseDown=this.onMouseDown.bind(this);
     this.onBlur = this.onBlur.bind(this);
-    // this.onFocus = this.onFocus.bind(this);
 
     this.state = {
       query: '',
@@ -76,20 +57,6 @@ class Search extends React.Component {
 
   searchClicked() {
       safari.self.hide();
-      // var url = 'https://api.pdn.netpace.net/couponapi/coupons/redirectUrl?couponId='+this.state.cId+'&consumerId=1';
-      // const config = { headers: {'Content-Type': 'application/json'} };
-      // axios.put(url,'', config).then(response => {
-      //
-      //   safari.self.hide();
-      //   window.location.reload();
-      //     var newURL = response.data.data.redirectUrl;
-      //     var targetWin = safari.application.activeBrowserWindow;
-      //     targetWin.openTab().url = newURL;
-      //
-      // })
-      // .catch(function (response) {
-      //
-      // });
       }
 
 
@@ -102,21 +69,6 @@ class Search extends React.Component {
 
   }
 
-  // async getInfo() {
-  //   const { data } = await getMerchantData(this.state.query);
-  //   let merchants = data.data.map(merchantCashback);
-  //   Promise.all(merchants).then(
-  //     merchants => {
-  //      const filtered = merchants.filter(merchant => merchant.cashbackPercentage > 0);
-  //       this.setState({
-  //         results: filtered
-  //       });
-  //     }
-  //   );
-
-
-  // }
-
   async getInfo() {
 
       if(this.state.query.length>=3){
@@ -125,29 +77,6 @@ let merchants = data.data;
  this.setState({
           results: merchants
         });
-    // let mIds=[];
-    // data.data.map(merchant=>{mIds.push(merchant.id)});
-    // const joinIDs= mIds.join();
-    // console.log(joinIDs);
-    // merchantCashback(joinIDs).then(
-    //   cashbackCoupns => {
-       
-    //    for(let i=0;i<merchants.length;i++){
-    //      if(cashbackCoupns[i]===null){
-    //       merchants[i].cashbackPercentage = 0;
-    //      }
-    //      else{
-    //       merchants[i].cashbackPercentage = cashbackCoupns[i].cashbackPercentage;
-    //       merchants[i].couponId=cashbackCoupns[i].id;
-    //      }
-    //    }
-    //    let filtered = merchants.filter(merchant => merchant.cashbackPercentage!==0);
-    //     this.setState({
-    //       results: filtered
-    //     });
-    //     //console.log("Length is "+this.state.results.length)
-    //   }
-    // );
       }
   }
 
@@ -190,7 +119,6 @@ if(!res)
 
   onBlur() {
     document.getElementById('overlay').classList.remove('overlay');
-   // document.getElementById('over').classList.remove('show-result-row');
 
     setTimeout(()=>{
       this.setState({  focus: false });
@@ -199,23 +127,6 @@ if(!res)
     disableScroll.off();
   }
 
-  // onFocus() {
-  //   document.getElementById('overlay').classList.add('overlay');
-  // //  document.getElementById('over').classList.add('show-result-row');
-  //   // document.getElementById("over").style.display = "block";
-  //   this.setState({focus: true});
-  //   disableScroll.on();
-  // }
-
-  // onBlur() {
-  //   document.getElementById('overlay').classList.remove('overlay');
-  //   disableScroll.off();
-  // }
-
-  // onFocus() {
-  //   document.getElementById('overlay').classList.add('overlay');
-  //   disableScroll.on();
-  // }
 
   keyEnter(e)
   {
@@ -268,13 +179,8 @@ else{
   activatedlinks.push(link);
 }
           localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
-      //   var url = 'https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+this.state.results[i].id+'&consumerId=1';
-      //   const config = { headers: {'Content-Type': 'application/json'  , 
-      //   'Authorization': localStorage.getItem('token'),
-      //   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-      // } };
+
       CouponService.fetchRedirectURl(this.state.results[i].id)
-       // axios.put(url,'', config)
        .then(response => {
           this.setState({
             isloading: false
@@ -310,8 +216,6 @@ break;
     }
 }
 
-
-//  browser.tabs.create({ url: newURL });
   }
 }
 
@@ -376,10 +280,6 @@ if(this.state.highlightedMerchant.merchantName===undefined)
 {
   this.search.value = this.state.query
 }
-// else
-// {
-//   this.search.value = this.state.highlightedMerchant.name
-// }
 
     }
 
@@ -436,9 +336,7 @@ else if(this.state.currentIndex === this.state.results.length -1)
 }
 
 handleClick(e) {
-  
- // e.preventDefault();
- // console.log('The link was clicked.');
+
  document.getElementById('overlay').classList.add('overlay');
  this.setState({focus: true});
  disableScroll.on();

@@ -20,12 +20,8 @@ class MerchantItem extends React.Component {
   merchantItemClicked(id,merchantId){
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
    
-  //  var link = new URL(this.state.results[i].domainUrl);
     var activatedlinks = [];   
-           
-  //  var urlhostt= safari.application.activeBrowserWindow.activeTab.url;
-  //               var pathArray = urlhostt.split( '/' );
-  //               var host = pathArray[2];
+ 
     var actiii = false;
     if(localStorage.getItem('activatedlinks')!==null)
           {  
@@ -48,21 +44,12 @@ if(!actiii)
             activatedlinks.push(merchantId);
           }
                 localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));    
-                      
-          
-
 
     const self = this;
   this.setState({
     isloading: true
   });
-//   const config = { headers: {'Content-Type': 'application/json' ,
-//   'Authorization': localStorage.getItem('token'),
-//   'X-LOCATION-TIME':`${API.getTodaysDate()} ${API.getFormattedTime(currentUnixTimeStamp)}`
-// }};
-// console.log(url);
 CouponService.fetchRedirectURl(id)
-  //axios.put(url,'', config)
   .then(response => {
     self.setState({
       isloading: false
@@ -88,9 +75,7 @@ CouponService.fetchRedirectURl(id)
         const merchantId = this.props.merchantId;
         const couponId=this.props.couponId;
        
-        const url='https://codesapi.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+couponId+'&consumerId=1';
-      //   const url='https://codesapi.pdn.coupons.com/couponapi/coupons/redirectUrl/web?couponId='+couponId+'&consumerId=1';
-        var linkStyle = {
+      var linkStyle = {
             textDecoration: 'none'
           };
 
