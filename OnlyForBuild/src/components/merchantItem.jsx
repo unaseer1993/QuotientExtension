@@ -23,6 +23,10 @@ class MerchantItem extends React.Component {
     var activatedlinks = [];   
  
     var actiii = false;
+    CouponService.fetchIsUSA()
+    .then(response => {
+      if (response.data.data ) {
+      //  alert(response.data.data);
     if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
@@ -43,7 +47,9 @@ if(!actiii)
           {
             activatedlinks.push(merchantId);
           }
-                localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));    
+                localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));   
+        }
+      }); 
 
     const self = this;
   this.setState({

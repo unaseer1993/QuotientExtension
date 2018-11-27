@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LoadingSpinner from './loading-spinner';
 import signin from '../services/signin';
+import {BASE_URL} from '../../utils/urls';
 let email = '';
 let pass = '';
 class Login extends React.Component {
@@ -118,7 +119,10 @@ validateEmail(email)
   }
 
   hide(){
-    safari.self.hide()
+    safari.self.hide();
+      var newURL = BASE_URL;
+      var targetWin = safari.application.activeBrowserWindow;
+      targetWin.openTab().url = newURL;
   }
   render(){
     const isLoading = this.state.isloading;
@@ -136,7 +140,7 @@ validateEmail(email)
       <div class="hd">
       <h1 class="txt-xxl bold">Sign In to Coupons.com</h1>
       <span class="txt-md">
-      Not a member? <a class="signup" href="https://www.coupons.com/coupon-codes/authentication/sign-up/" onClick={this.hide}>Sign Up</a>
+      Not a member? <a class="cursor" onClick={this.hide}>Sign Up</a>
       </span>
       </div>
       <div class="bd">

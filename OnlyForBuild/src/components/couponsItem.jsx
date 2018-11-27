@@ -11,9 +11,14 @@ class CouponsItem extends React.Component {
     };
   }
 
+
   merchantItemClicked(id,couponType,Merchantid){
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
     var activatedlinks = [];
+     CouponService.fetchIsUSA()
+     .then(response => {
+       if (response.data.data ) {
+      //  alert(response.data.data);
             if(couponType)
              {
 
@@ -39,7 +44,9 @@ if(!actiii)
           }
      localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks)); 
              
-           }            
+           }  
+          }
+          });          
 
 
       const self = this;
