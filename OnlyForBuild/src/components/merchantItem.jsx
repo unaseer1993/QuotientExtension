@@ -18,6 +18,7 @@ class MerchantItem extends React.Component {
   
 
   merchantItemClicked(id,merchantId){
+
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
    
     var activatedlinks = [];   
@@ -25,8 +26,7 @@ class MerchantItem extends React.Component {
     var actiii = false;
     CouponService.fetchIsUSA()
     .then(response => {
-      if (response.data.data ) {
-      //  alert(response.data.data);
+      if (response.data.data === "true") {
     if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));

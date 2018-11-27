@@ -17,8 +17,7 @@ class CouponsItem extends React.Component {
     var activatedlinks = [];
      CouponService.fetchIsUSA()
      .then(response => {
-       if (response.data.data ) {
-      //  alert(response.data.data);
+       if (response.data.data === "true") {
             if(couponType)
              {
 
