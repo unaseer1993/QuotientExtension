@@ -2,6 +2,7 @@
 import React from 'react';
 import LoadingSpinner from './loading-spinner';
 import CouponService from "../services/couponService"
+import {activateLink} from "../../utils/methods"
 
 class CouponsItem extends React.Component {
   constructor(props) {
@@ -19,63 +20,42 @@ class CouponsItem extends React.Component {
   merchantItemClicked(id,couponType,Merchantid){
     var consumerId = localStorage.getItem('userId')
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-    var activatedlinks = [];
+    const self = this;
+    this.setState({
+      isloading: true
+    });
+    
      CouponService.fetchIsUSA()
      .then(response => {
        if (response.data.data === "true") {
             if(couponType)
              {
-if(localStorage.getItem('userId') !== null) {
-  this.setState ({cbId :localStorage.getItem('userId') });
-}
-                  var actiii = false;
-    if(localStorage.getItem('activatedlinks')!==null)
-          {
-            activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
-                  for (var i = 0; i < activatedlinks.length; i++) {
- if (activatedlinks[i] == Merchantid)
- {
-     actiii = true;
-     break;
- }
-}
-if(!actiii)
-{
-  activatedlinks.push(Merchantid);
-} 
-          
+              if(localStorage.getItem('userId') !== null) {
+                       this.setState ({cbId :localStorage.getItem('userId') });
+              }
+              activateLink(Merchantid)
+            }
           }
-          else{
-            activatedlinks.push(Merchantid);
-          }
-     localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks)); 
-             
-           }  
-          }
+          CouponService.fetchRedirectURl(id,this.state.cbId)
+          .then(response => {
+            self.setState({
+             isloading: false
+             });
+          safari.self.hide();
+           var newURL = response.data.data.redirectUrl;
+            var targetWin = safari.application.activeBrowserWindow;
+            targetWin.openTab().url = newURL;
+              })
+            .catch(function (response) {
+              self.setState({
+               isloading: false
+               });
+            });
           });          
 
 
-      const self = this;
-    this.setState({
-      isloading: true
-    });
-    
-    CouponService.fetchRedirectURl(id,this.state.cbId)
-    .then(response => {
-      self.setState({
-        isloading: false
-      });
-      safari.self.hide();
-        var newURL = response.data.data.redirectUrl;
-        var targetWin = safari.application.activeBrowserWindow;
-        targetWin.openTab().url = newURL;
-
-    })
-    .catch(function (response) {
-      self.setState({
-        isloading: false
-      });
-    });
+      
+   
   }
 
     render() {

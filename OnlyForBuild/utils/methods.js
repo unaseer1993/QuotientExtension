@@ -47,3 +47,27 @@ export function setCookies(mId , cId){
       return lArray.toString();
   }
 
+  export function activateLink(Merchantid) {
+    var activatedlinks = [];
+    var actiii = false;
+    if(localStorage.getItem('activatedlinks')!==null)
+          {
+            activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
+                  for (var i = 0; i < activatedlinks.length; i++) {
+ if (activatedlinks[i] == Merchantid)
+ {
+     actiii = true;
+     break;
+ }
+}
+if(!actiii)
+{
+  activatedlinks.push(Merchantid);
+}      
+          }
+          else{
+            activatedlinks.push(Merchantid);
+          }
+     localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks)); 
+  }
+

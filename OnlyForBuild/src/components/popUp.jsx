@@ -12,6 +12,7 @@ import { CDN } from "../../utils/urls";
 import Error from "./error.jsx";
 import LoadingSpinner from "./loading-spinner";
 import InfiniteScroll from 'react-infinite-scroller';
+import {activateLink} from "../../utils/methods"
 
 import CouponService from "../services/couponService"
 /*global safari*/
@@ -29,7 +30,7 @@ class PopUp extends React.Component {
       id:0,
       activated:"",
       couponId:0,
-      isDisable:"false",
+      usUser:"false",
       cbId : 0
     };
   }
@@ -49,63 +50,45 @@ class PopUp extends React.Component {
     this.setState({ isloading: true });
     CouponService.fetchIsUSA()
          .then(res => {   
-          if(localStorage.getItem('userId') !== null) {
-            this.setState ({cbId :localStorage.getItem('userId') });
-          }
-        this.setState({ isDisable : res.data.data });
+        this.setState({ usUser : res.data.data });
           });
   }
 
   merchantItemClicked(Merchantid,activated,couponId){
+    const self = this;
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-    var activatedlinks = [];
-  
-         if(activated !== "Loading..." && activated !== "Cashback Activated" && activated !== "Available Coupons" && couponId > 0)
+     if(activated !== "Loading..." && activated !== "Cashback Activated" && activated !== "Available Coupons" && couponId > 0)
          {
-                  var actiii = false;
-    if(localStorage.getItem('activatedlinks')!==null)
-          {
-            activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
-                  for (var i = 0; i < activatedlinks.length; i++) {
- if (activatedlinks[i] == Merchantid)
- {
-     actiii = true;
-     break;
- }
-}
-if(!actiii)
-{
-  activatedlinks.push(Merchantid);
-} 
-          
-          }
-          else{
-            activatedlinks.push(Merchantid);
-          }
-     localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks)); 
-             
-                      
-
-     const self = this;
-    this.setState({
-      isloading: true
-    });
-    CouponService.fetchRedirectURl(couponId,this.state.cbId)
+          this.setState({
+            isloading: true
+          });
+          CouponService.fetchIsUSA()
     .then(response => {
-      this.setState({
-        isloading: false
-      });
-      safari.self.hide();
-        var newURL = response.data.data.redirectUrl;
-        var targetWin = safari.application.activeBrowserWindow;
-        targetWin.openTab().url = newURL;
-
-    })
-    .catch(function (response) {
-      this.setState({
-        isloading: false
-      });
-    });
+      if (response.data.data === "true") {
+        if(localStorage.getItem('userId') !== null) {
+          this.setState ({cbId :localStorage.getItem('userId') });
+        }
+        activateLink(Merchantid)
+        }
+          
+          CouponService.fetchRedirectURl(couponId,this.state.cbId)
+          .then(response => {
+            self.setState({
+              isloading: false
+            });
+            safari.self.hide();
+              var newURL = response.data.data.redirectUrl;
+              var targetWin = safari.application.activeBrowserWindow;
+              targetWin.openTab().url = newURL;
+        
+          })
+          .catch(function (response) {
+            console.log(response);
+            self.setState({
+              isloading: false
+            });
+          });
+        });
   }
 }
 
@@ -172,7 +155,7 @@ if(!actiii)
 var activated = this.state.activated;
 const couponId = this.state.couponId;
 
-    if(this.state.isDisable === "true") {
+    if(this.state.usUser === "true") {
         if(activated !== 0)
           {
               activated = "Activate " +activated +"% Cashback";

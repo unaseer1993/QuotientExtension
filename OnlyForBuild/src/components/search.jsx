@@ -7,6 +7,7 @@ import Suggestion from "./suggestions";
 import { SEARCH_QUERY  } from '../../utils/urls'
 import LoadingSpinner from './loading-spinner';
 import CouponService from '../services/couponService'
+import {activateLink} from "../../utils/methods"
 
 let browser = window.browser || window.safari;
 
@@ -157,56 +158,83 @@ if(e.key === 'Enter'){
       if(this.state.query===this.state.results[i].merchantName && this.state.currentIndex!==-1) 
       {
         var link = this.state.results[i].merchantId;
-        
+        const self = this;
         CouponService.fetchIsUSA()
         .then(response => {
           if (response.data.data === "true") {
             if(localStorage.getItem('userId') !== null) {
               this.setState ({cbId :localStorage.getItem('userId') });
             }
-        var activatedlinks = [];
-         var actiii = false;
-    if(localStorage.getItem('activatedlinks')!==null)
-          {
-            activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
+            activateLink(link);
+            }
+            CouponService.fetchRedirectURl(this.state.results[i].id,this.state.cbId)
+            .then(response => {
+              self.setState({
+                isloading: false
+              });
+              safari.self.hide();
+                var newURL = response.data.data.redirectUrl;
+                var targetWin = safari.application.activeBrowserWindow;
+                targetWin.openTab().url = newURL;
           
-       for (var j = 0; j < activatedlinks.length; j++) {
- if (activatedlinks[j] == link)
- {
-actiii = true;
-break;
- }
-}
-if(!actiii)
-{
-    activatedlinks.push(link);
-} 
-}
-else{
-  activatedlinks.push(link);
-}
-          localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
-          }
-        });
-      CouponService.fetchRedirectURl(this.state.results[i].id,this.state.cbId)
-       .then(response => {
-          this.setState({
-            isloading: false
-          });
-          safari.self.hide();
-          window.location.reload();
-            var newURL = response.data.data.redirectUrl;
-            var targetWin = safari.application.activeBrowserWindow;
-            targetWin.openTab().url = newURL;
+            })
+            .catch(function (response) {
+              console.log(response);
+              self.setState({
+                isloading: false
+              });
+            });
+         }); 
+        
+//         CouponService.fetchIsUSA()
+//         .then(response => {
+//           if (response.data.data === "true") {
+//             if(localStorage.getItem('userId') !== null) {
+//               this.setState ({cbId :localStorage.getItem('userId') });
+//             }
+//         var activatedlinks = [];
+//          var actiii = false;
+//     if(localStorage.getItem('activatedlinks')!==null)
+//           {
+//             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
+          
+//        for (var j = 0; j < activatedlinks.length; j++) {
+//  if (activatedlinks[j] == link)
+//  {
+// actiii = true;
+// break;
+//  }
+// }
+// if(!actiii)
+// {
+//     activatedlinks.push(link);
+// } 
+// }
+// else{
+//   activatedlinks.push(link);
+// }
+//           localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
+//           }
+//         });
+//       CouponService.fetchRedirectURl(this.state.results[i].id,this.state.cbId)
+//        .then(response => {
+//           this.setState({
+//             isloading: false
+//           });
+//           safari.self.hide();
+//           window.location.reload();
+//             var newURL = response.data.data.redirectUrl;
+//             var targetWin = safari.application.activeBrowserWindow;
+//             targetWin.openTab().url = newURL;
 
-        })
-        .catch(function (response) {
-          this.setState({
-            isloading: false
-          });
-          safari.self.hide();
-          window.location.reload();
-        });
+//         })
+//         .catch(function (response) {
+//           this.setState({
+//             isloading: false
+//           });
+//           safari.self.hide();
+//           window.location.reload();
+//         });
 chkquery = true;
 break;
       }
