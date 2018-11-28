@@ -13,7 +13,16 @@ class MerchantItem extends React.Component {
     super(props);
     this.state = {
       isloading: false,
+      isUs : "false" ,
+      cbId : 0
     };
+  }
+  componentDidMount() {
+    CouponService.fetchIsUSA()
+    .then(response => { 
+   
+      this.setState({isUs : response.data.data})
+  });
   }
   
 
@@ -22,11 +31,14 @@ class MerchantItem extends React.Component {
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
    
     var activatedlinks = [];   
- 
     var actiii = false;
-    CouponService.fetchIsUSA()
-    .then(response => {
-      if (response.data.data === "true") {
+    // CouponService.fetchIsUSA()
+    // .then(response => {
+      if (this.state.isUs === "true") {
+        if(localStorage.getItem('userId') !== null) {
+          this.setState ({cbId :localStorage.getItem('userId') });
+        }
+      
     if(localStorage.getItem('activatedlinks')!==null)
           {  
             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
@@ -49,13 +61,15 @@ if(!actiii)
           }
                 localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));   
         }
-      }); 
+    //  }); 
 
     const self = this;
   this.setState({
     isloading: true
   });
-CouponService.fetchRedirectURl(id)
+  // alert(this.state.cbId);
+
+CouponService.fetchRedirectURl(id,this.state.cbId)
   .then(response => {
     self.setState({
       isloading: false
@@ -90,7 +104,7 @@ CouponService.fetchRedirectURl(id)
 
         return ([
           <div>
-          {this.props.couponType !=="In-store" &&
+          {this.props.couponType !=="In-store" && percantage!==0 &&
             <a onClick={()=>{this.merchantItemClicked(couponId,merchantId )}}  style={linkStyle} class="cursor">
             { isLoading &&
               <LoadingSpinner />

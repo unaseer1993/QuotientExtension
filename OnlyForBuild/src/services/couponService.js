@@ -7,8 +7,17 @@ export default {
     fetchCashbackCoupons(page){
         return api.get(service+'/coupons/max_cashback_coupons/pages/plugin?page='+page+'&size=10');
     },
-    fetchRedirectURl(id){
-        return api.put(service +"/coupons/redirectUrl/plugin?couponId="+id+"&consumerId=1")
+    fetchRedirectURl(id,consumerId){
+
+        // if(consumerId === 0 ) 
+        // {
+            
+        //     return api.put(service +"/coupons/redirectUrl/plugin?couponId="+id+"&consumerId=")
+        // }
+        // else {
+   
+        return api.put(service +"/coupons/redirectUrl/plugin?couponId="+id+"&consumerId="+consumerId)
+       // }
     },
     fetchMaxCashBackCouponByMercahat(id){
         return api.get(service+'/coupons/max_cashback_coupon/plugin/'+id);

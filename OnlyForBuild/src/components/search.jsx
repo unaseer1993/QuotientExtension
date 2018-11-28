@@ -48,7 +48,8 @@ class Search extends React.Component {
       currentIndex : -1,
       isloading: false,
       chk : 0,
-      focus:true
+      focus:true,
+      cbId : 0
     }
 
     this.lastRequestId = null
@@ -156,9 +157,13 @@ if(e.key === 'Enter'){
       if(this.state.query===this.state.results[i].merchantName && this.state.currentIndex!==-1) 
       {
         var link = this.state.results[i].merchantId;
+        
         CouponService.fetchIsUSA()
         .then(response => {
           if (response.data.data === "true") {
+            if(localStorage.getItem('userId') !== null) {
+              this.setState ({cbId :localStorage.getItem('userId') });
+            }
         var activatedlinks = [];
          var actiii = false;
     if(localStorage.getItem('activatedlinks')!==null)
@@ -183,7 +188,7 @@ else{
           localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));
           }
         });
-      CouponService.fetchRedirectURl(this.state.results[i].id)
+      CouponService.fetchRedirectURl(this.state.results[i].id,this.state.cbId)
        .then(response => {
           this.setState({
             isloading: false

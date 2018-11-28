@@ -29,7 +29,8 @@ class PopUp extends React.Component {
       id:0,
       activated:"",
       couponId:0,
-      isDisable:"false"
+      isDisable:"false",
+      cbId : 0
     };
   }
 
@@ -48,6 +49,9 @@ class PopUp extends React.Component {
     this.setState({ isloading: true });
     CouponService.fetchIsUSA()
          .then(res => {   
+          if(localStorage.getItem('userId') !== null) {
+            this.setState ({cbId :localStorage.getItem('userId') });
+          }
         this.setState({ isDisable : res.data.data });
           });
   }
@@ -86,7 +90,7 @@ if(!actiii)
     this.setState({
       isloading: true
     });
-    CouponService.fetchRedirectURl(couponId)
+    CouponService.fetchRedirectURl(couponId,this.state.cbId)
     .then(response => {
       this.setState({
         isloading: false

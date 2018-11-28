@@ -56,7 +56,7 @@ componentDidMount(){
             isloading: true
             });
      
- CouponServices.fetchRedirectURl(this.state.cId)
+ CouponServices.fetchRedirectURl(this.state.cId,0)
 
       .then(response => {
         this.setState({

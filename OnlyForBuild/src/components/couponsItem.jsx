@@ -8,11 +8,16 @@ class CouponsItem extends React.Component {
     super(props);
     this.state = {
       isloading: false,
+      cbId : 0
     };
   }
 
+  prevent(e) {
+    e.preventDefault();
+  }
 
   merchantItemClicked(id,couponType,Merchantid){
+    var consumerId = localStorage.getItem('userId')
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
     var activatedlinks = [];
      CouponService.fetchIsUSA()
@@ -20,7 +25,9 @@ class CouponsItem extends React.Component {
        if (response.data.data === "true") {
             if(couponType)
              {
-
+if(localStorage.getItem('userId') !== null) {
+  this.setState ({cbId :localStorage.getItem('userId') });
+}
                   var actiii = false;
     if(localStorage.getItem('activatedlinks')!==null)
           {
@@ -52,7 +59,8 @@ if(!actiii)
     this.setState({
       isloading: true
     });
-    CouponService.fetchRedirectURl(id)
+    
+    CouponService.fetchRedirectURl(id,this.state.cbId)
     .then(response => {
       self.setState({
         isloading: false
@@ -92,6 +100,7 @@ if(!actiii)
             { isLoading &&
               <LoadingSpinner />
             }
+            
             <div className="cash-back-product-row cash-back-page-dark-style ">
                 <div onClick={()=>{this.merchantItemClicked(id,couponType,this.props.Merchantid)}} className="cash-back-product cash-back-deal no-border top-bottom-zero">
                 {type !== 'Deal' &&
@@ -115,7 +124,7 @@ if(!actiii)
 
                     </div>
                 }
-
+               
                     {type === 'Deal' &&
 
                         <div className="product-logo">
@@ -139,7 +148,7 @@ if(!actiii)
                        <div className="cashback-bottom-content-row">
                    { !hideExpirationDate &&
                     <div className="date">   Ends: {date}  </div>}
-                    <div className="day margin-left-25"> {code}  </div>
+                    <div className="day margin-left-25" onClick="prevent"> {code}  </div>
                     <a onClick={()=>{this.merchantItemClicked(id,couponType,this.props.Merchantid )}} className="click-save"></a>
                 </div>
                     </div>

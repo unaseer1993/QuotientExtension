@@ -133,8 +133,9 @@ function chkMarchent(name){
       }).responseJSON;
       //alert(JSON.stringify(d.data));
       if(d.data!=null & d.meta.code==200){
+        if (d.data[0].cashbackPercentage !== null) {
       cashbackPercentage=d.data[0].cashbackPercentage;
-      id = d.data[0].merchantId
+      id = d.data[0].merchantId}
       }
       else
       {
