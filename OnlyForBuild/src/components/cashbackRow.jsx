@@ -34,10 +34,10 @@ couponService.fetchIsUSA()
         this.setState({ isDisable : res.data.data });
           });
         
-//userId
+
           ConsumerService.fetchCashbackDetailsbyId(userId)
          .then(res => {
-        var couponcashbackbalance = res.data.data.consumerCashbackBalance;
+        var couponcashbackbalance = res.data.data.cashbackBalance;
         if (couponcashbackbalance !== undefined) { 
           this.setState({ consumerCashbackBalance : Number(couponcashbackbalance).toFixed(2) });
         }
@@ -47,7 +47,7 @@ couponService.fetchIsUSA()
 
         
           });
-//userId
+
           ConsumerService.fetchCashbackProcessingById(userId)
             .then(res => {
               

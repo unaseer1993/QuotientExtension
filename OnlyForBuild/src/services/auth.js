@@ -30,7 +30,7 @@ export function ajaxTokenHandler(param){
   const method = "GET"
   const timestamp = Math.round(new Date().getTime() / 1000);
   const secret = API_SECRET
-  let uri =  "/couponapi/coupons/max_cashback_coupon/domain_url/web?domainUrl="+param;
+  let uri =  "/couponapi/coupons/max_cashback_coupon/domain_url/plugin?domainUrl="+param;
   let token = sha1(method + uri + timestamp + secret);
   token = Buffer.from(token).toString('base64');
   let headers = {

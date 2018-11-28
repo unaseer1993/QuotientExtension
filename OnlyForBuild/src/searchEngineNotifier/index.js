@@ -1,33 +1,35 @@
-/*global safari*/
+/*global browser*/
 /*global chrome*/
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Notifire from './notifier';
+import  decodeUriComponent from 'decode-uri-component';
 import couponsService from '../services/couponService';
-import $ from 'jquery';
 
-
-
-
-render();
+// browser.storage.local.get(['s'], (items)=> {
+//     if(!items.s){
+    render();
+// }});
 
 function render (){
-    const app = document.createElement('div');
-    const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
+   
+    const app = '<div class="notifire"></div>';
     let element = getSlector();
-    app.className = 'notifire'; 
-    console.log(element);
     if (element){
-
-    element.prepend(app);
+        console.log(element);
         for(let i=0;i<element.length;i++){
-            couponsService.fetchCashbackCouponByMerchant(element[i].hostname)
-             .then((res)=>{
+            let hostname = element[i].hostname;
+            element[i].insertAdjacentHTML('afterBegin', app );
+            if(hostname==='r.search.yahoo.com'){
+                hostname=filterYahooUrl(element[i].href);
+            }
+            couponsService.fetchCashbackCouponByMerchant(hostname).then((res)=>{
                 if(res.data.data[0] && res.data.data[0].merchantId){
-                    const id= res.data.data[0].merchantId;
+                    const id= res.data.data[0].merchantId;                   
                             const cb = res.data.data[0].cashbackPercentage;
                             ReactDOM.render(<Notifire cB ={cb} />, document.getElementsByClassName('notifire')[i] );
+            
                 }
 
             });
@@ -44,7 +46,14 @@ var a = document.createElement('a');
 a.href = url;
 return a
 }
-
+function filterYahooUrl(url){
+    let filter = decodeUriComponent(url);
+    //var myRe = new RegExp('RU=(.*)Rk');
+    var href = filter.substring(filter.indexOf("RU=")+3, filter.indexOf("RK"));;
+    let a = getLocation(href);
+    console.log(a.hostname);
+    return a.hostname;
+}
 function getTabUrl(){
 var url = getLocation(window.location.href);
 return url.hostname;
@@ -55,14 +64,10 @@ const tabURl= getTabUrl();
 
 console.log(tabURl);
 if (tabURl.indexOf("www.google.com")>=0){
-return $(".rc .r a");
+return document.querySelectorAll(".rc .r a");
 }
-else if(tabURl.indexOf("www.bing.com")>=0)
-return $(".b_algo h2 a");
-
 else if(tabURl.indexOf("yahoo.com")>=0){
-return $("#web h3.title a");
-
+    return document.querySelectorAll("#web h3.title a");
 }
 else{
   return null;

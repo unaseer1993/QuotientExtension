@@ -59,7 +59,8 @@ module.exports = {
   entry: {
     app: [require.resolve('./polyfills'), paths.appIndexJs],
     background: [require.resolve('./polyfills'), './src/background/background.js'],
-    notifier: [require.resolve('./polyfills'), './src/searchEngineNotifier/index.js']
+    notifier: [require.resolve('./polyfills'), './src/searchEngineNotifier/index.js'],
+    bingNotifier: [require.resolve('./polyfills'), './src/searchEngineNotifier/bingNotifier.js']
 
     // activated: [require.resolve('./polyfills'), './src/notification/index.js']
   },

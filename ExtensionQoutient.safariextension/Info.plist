@@ -55,6 +55,7 @@
 			<array>
 				<string>build/notifier.js</string>
 				<string>build/js/Activate.js</string>
+				<string>build/bingNotifier.js</string>
 			</array>
 			<key>Start</key>
 			<array>
