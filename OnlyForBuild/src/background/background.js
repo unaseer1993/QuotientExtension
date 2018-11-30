@@ -22,15 +22,21 @@ inRecent.push(stack[i].id);
 }
 
 }
+// safari.application.addEventListener("popover", popoverHandler, false);
+// function popoverHandler(event) {
+//  if (event.target.identifier !== "openPopover") {
+//   event.target.contentWindow.location.reload();
+//  }
+// }
 
 
 safari.application.addEventListener("activate", handleChange, true);
 safari.application.addEventListener("navigate", handleChange, true);
 safari.application.addEventListener("beforeNavigate", handleChange, true);
 
-var cookies = document.cookie;
 
 function handleChange(){
+  //alert("handler");
   var tab = safari.application.activeBrowserWindow.activeTab.url;
   var mer=getHostName(tab);
   if(tab){
@@ -49,18 +55,21 @@ function callApi(name, link){
     {
        name = "";
     }
-
+  
    MerchantService.isMerchantExist(name)
     .then(res => {
         let merchant = res.data.data;
-        window.location.reload()
+       // alert(JSON.stringify(merchant));
+        
         if(merchant!==null && JSON.stringify(merchant) !== "{}" && merchant.id !==undefined){
+       window.location.reload();
+      // var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
+      // safari.extension.toolbarItems[0].image = iconUri;
           id=merchant.id;
           localStorage.setItem('chk',1);
           localStorage.setItem('id', id);
             setRecentlyVisited(id,link);
-            
-            
+              
              if (
           typeof safari.application.activeBrowserWindow.activeTab.url !==
           "undefined"

@@ -72,10 +72,11 @@ this.setState({ islogout : true})
         const isDisable = this.state.isDisable;
         return (
             <footer>
-                <a onClick={this.settingClicked} class="cursor">
+                
+                <a onClick={this.settingClicked} class={this.state.isDisable === "true" ? 'cursor' : 'setting-noborder-us'}>
                     <img src="images/settings.png" alt="Settings" class="cursor"/> Settings</a>
-              { this.state.isDisable === "true" &&  <a onClick={this.helpClicked} class="cursor">
-                    <img src="images/help.png" alt="Help"/> Help</a> }
+                    { this.state.isDisable === "true" &&  <a onClick={this.helpClicked} class="cursor">
+<img src="images/help.png" alt="Help"/> Help</a> }
                     { !islogout &&
                 <a onClick={this.signout} class="cursor">
                     <img src="images/sign-out.png" alt="Logout"/> Logout</a>

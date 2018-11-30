@@ -17,7 +17,7 @@ class CashbackRow extends React.Component {
           }
         }
         componentDidMount() {
-       
+      
         var userId;
         if(localStorage.getItem('userId')!==null)
         {

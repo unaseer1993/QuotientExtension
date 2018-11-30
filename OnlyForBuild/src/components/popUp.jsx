@@ -262,6 +262,15 @@ const couponId = this.state.couponId;
         ];
       }
     } else if (chk === 2) {
+      if (
+        typeof safari.application.activeBrowserWindow.activeTab.url !==
+        "undefined"
+      ) {
+      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
+        "normal",
+        id
+      );
+      }
       if (!coupons) {
         return [!coupons && <Error />];
       } else {

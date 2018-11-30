@@ -26,6 +26,8 @@ class App extends React.Component {
     var chkboxvalue = localStorage.getItem("chkbox");
     const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
 
+   
+
     if (
       typeof safari.application.activeBrowserWindow.activeTab.url !==
       "undefined"
@@ -59,8 +61,12 @@ class App extends React.Component {
           "undefined"
         ) {
           safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-            "userid",
+            "user",
             localStorage.getItem("userEmail")
+          );
+          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
+            "userId",
+            localStorage.getItem("userId")
           );
         }
         result = localStorage.getItem("chk");
@@ -72,7 +78,7 @@ class App extends React.Component {
 
     var activatedlinks = [];
 
-    safari.application.addEventListener("message", handleMessage, false);
+    safari.application.addEventListener("message", handleMessage, false );
     function handleMessage(msg) {
       if (msg.name === "activatedlinks") {
         if (localStorage.getItem("activatedlinks") !== null) {
@@ -82,7 +88,7 @@ class App extends React.Component {
           activatedlinks.push(msg.message);
         }
         localStorage.setItem("activatedlinks", JSON.stringify(activatedlinks));
-        window.location.reload();
+       // window.location.reload();
       } else if (msg.name === "chkbox") {
         if (msg.message === 1) {
           localStorage.setItem("chkbox", 1);
@@ -90,6 +96,21 @@ class App extends React.Component {
           localStorage.setItem("chkbox", 0);
         }
       }
+      /* New Code Added for RND */
+      // else if (msg.name === "getuserIdChckboxActivated") {
+
+
+      //       if (
+      //         typeof safari.application.activeBrowserWindow.activeTab.url !==
+      //         "undefined"
+      //       ) {
+      //         safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
+      //           "getuserIdChckboxActivated",
+      //           "id"
+      //         );
+      //       }
+      // }
+       /* New Code Added for RND */
     }
 
     if (result === "1") {
@@ -106,6 +127,7 @@ class App extends React.Component {
         var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
         safari.extension.toolbarItems[0].image = iconUri;
      
+      
         CouponService.fetchCashbackCoupons(0)
           .then(res => {
             const coupons = res.data.data.content;
@@ -161,6 +183,7 @@ this.setState({activated:0});
         });
       } else {
         {
+        
           var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
           safari.extension.toolbarItems[0].image = iconUri;
         }

@@ -53,58 +53,6 @@ componentDidMount(){
             });
           });
         }); 
-//    var activatedlinks = [];   
-//     var actiii = false;
-
-//     CouponServices.fetchIsUSA()
-//      .then(response => {
-//        if (response.data.data === "true") {
-//         if(localStorage.getItem('activatedlinks')!==null)
-//           {  
-//             activatedlinks = JSON.parse(localStorage.getItem('activatedlinks'));
-//                for (var i = 0; i < activatedlinks.length; i++) {
-//           if (activatedlinks[i] == this.state.mId)
-//                 {
-//               actiii = true;
-//                 break;
-//                 }
-//                 }
-//                 if(!actiii)
-//             {
-//                 activatedlinks.push(this.state.mId);
-//                   }    
-//           }
-//           else
-//           {
-//             activatedlinks.push(this.state.mId);
-//           }
-//                 localStorage.setItem('activatedlinks',JSON.stringify(activatedlinks));    
-//         }
-//       });
-//           this.setState({
-//             isloading: true
-//             });
-     
-//  CouponServices.fetchRedirectURl(this.state.cId,0)
-
-//       .then(response => {
-//         this.setState({
-//           isloading: false
-//         });
-//         safari.self.hide();
-//         window.location.reload();
-//           var newURL = response.data.data.redirectUrl;
-//           var targetWin = safari.application.activeBrowserWindow;
-//           targetWin.openTab().url = newURL;
-
-//       })
-//       .catch(function (response) {
-//         this.setState({
-//           isloading: false
-//         });
-//         window.location.reload();
-//       });
-
     }
 
 

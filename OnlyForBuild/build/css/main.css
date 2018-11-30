@@ -1255,8 +1255,14 @@ font-family: 'Helvetica Neue';
 
 
 
-            .top-logo {width: 120px;}
-            .top-logo img  {width: 100%;}
+            .top-logo {width: 120px;
+            }
+            .top-logo img  {width: 100%;
+                height : 31px !important;}
+                .setting-noborder-us {
+                    cursor: pointer;
+                    border: 0px solid #000 !important;
+                }
 
             .height-auto {height: auto !important;}
 
