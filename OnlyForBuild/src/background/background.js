@@ -20,14 +20,77 @@ for(var i=0; i < stack.length;i++)
 {
 inRecent.push(stack[i].id);
 }
-
 }
-// safari.application.addEventListener("popover", popoverHandler, false);
-// function popoverHandler(event) {
-//  if (event.target.identifier !== "openPopover") {
-//   event.target.contentWindow.location.reload();
-//  }
-// }
+
+safari.application.addEventListener("popover", popoverHandler, false);
+function popoverHandler(event) {
+ if (event.target.identifier !== "openPopover") {
+  event.target.contentWindow.location.reload();
+ }
+}
+var activatedlinks = [];
+safari.application.addEventListener("message", handleMessage, false );
+function handleMessage(msg) {
+  if (msg.name === "activatedlinks") {
+    if (localStorage.getItem("activatedlinks") !== null) {
+      activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
+    }
+    if (!activatedlinks.includes(msg.message)) {
+      activatedlinks.push(msg.message);
+    }
+    localStorage.setItem("activatedlinks", JSON.stringify(activatedlinks));
+  } else if (msg.name === "chkbox") {
+    if (msg.message === 1) {
+      localStorage.setItem("chkbox", 1);
+    } else if (msg.message === 0) {
+      localStorage.setItem("chkbox", 0);
+    }
+  }
+  /* New Code Added for RND */
+  else if (msg.name === "chckActivated") {
+        if (
+          typeof safari.application.activeBrowserWindow.activeTab.url !==
+          "undefined"
+        ) {
+
+          var chkbox = localStorage.getItem('chkbox');
+          var userId = localStorage.getItem('userId');
+          if(userId !== null) {
+            localStorage.setItem('chk',1);
+            localStorage.setItem('id', msg.message); 
+            if (localStorage.getItem("activatedlinks") !== null) {
+              activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
+            }
+            if (!activatedlinks.includes(msg.message)) {
+
+              var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
+              safari.extension.toolbarItems[0].image = iconUri;
+              if(chkbox !== null && chkbox == 0 ) {
+              safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
+                "chckActivated",
+                "false"
+              );
+              }
+            }
+            else {
+  
+              var iconUri =
+              safari.extension.baseURI + "Icons/icon-activated@2x.png";
+            safari.extension.toolbarItems[0].image = iconUri;
+            if(chkbox !== null && chkbox == 0 ) {
+              safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
+                "chckActivated",
+                "true"
+              );
+              }
+              
+            }
+          
+        }
+        }
+  }
+   /* New Code Added for RND */
+}
 
 
 safari.application.addEventListener("activate", handleChange, true);
@@ -36,17 +99,19 @@ safari.application.addEventListener("beforeNavigate", handleChange, true);
 
 
 function handleChange(){
-  //alert("handler");
   var tab = safari.application.activeBrowserWindow.activeTab.url;
   var mer=getHostName(tab);
   if(tab){
-  callApi(mer,tab);
+   
+      callApi(mer,tab);
+    
   }
   else
   {
+    var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
+          safari.extension.toolbarItems[0].image = iconUri;
     localStorage.setItem("chk", 2);
    localStorage.setItem("id", 0);
-    window.location.reload();
   }
 }
 function callApi(name, link){
@@ -58,13 +123,8 @@ function callApi(name, link){
   
    MerchantService.isMerchantExist(name)
     .then(res => {
-        let merchant = res.data.data;
-       // alert(JSON.stringify(merchant));
-        
-        if(merchant!==null && JSON.stringify(merchant) !== "{}" && merchant.id !==undefined){
-       window.location.reload();
-      // var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
-      // safari.extension.toolbarItems[0].image = iconUri;
+        let merchant = res.data.data;       
+        if(merchant!==null && JSON.stringify(merchant) !== "{}" && merchant.id !==undefined){     
           id=merchant.id;
           localStorage.setItem('chk',1);
           localStorage.setItem('id', id);
@@ -74,50 +134,36 @@ function callApi(name, link){
           typeof safari.application.activeBrowserWindow.activeTab.url !==
           "undefined"
         ) {
+          if(localStorage.getItem('userId')!== null)
+          {
           var activatedlinks = [];
           if (localStorage.getItem("activatedlinks") !== null) {
             activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
-            
-            var actiii = false;
-            for (var i = 0; i < activatedlinks.length; i++) {
-              if (activatedlinks[i] == id) {
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-                  "activated",
-                  id
-                );
-                actiii = true;
-                break;
-              }
-            }
-            if (!actiii) {
-              safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-                "normal",
-                id
-              );
-            }
-          } else {
-            safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-              "normal",
-              id
-            );
+          }
+          if (!activatedlinks.includes(id)) { 
+            var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
+            safari.extension.toolbarItems[0].image = iconUri;
+          }
+          else {
+            var iconUri = safari.extension.baseURI + "Icons/icon-activated@2x.png";
+            safari.extension.toolbarItems[0].image = iconUri;
           }
         }
+      }
 
         }
         else{
+          var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
+      safari.extension.toolbarItems[0].image = iconUri;
           localStorage.setItem('chk',2);
 localStorage.setItem('id', 0);
         }
     }).catch(error => {
-  
+      var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
+      safari.extension.toolbarItems[0].image = iconUri;
   localStorage.setItem('chk', 2);
   localStorage.setItem('id',0);
-
     });
-
-
-
-
 }
 
 function getHostName(url)

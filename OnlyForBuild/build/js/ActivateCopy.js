@@ -1,85 +1,89 @@
 /*global safari*/
-
-
-if (window === window.top) {
+if ( window == window.top ) {
 var baseUrl  = "https://codesapiweb.coupons.com";
 var isUsUserUrl = "/couponapi/coupons/isUsUser/plugin/"
 var domainUrl = "/couponapi/coupons/max_cashback_coupon/domain_url/plugin?domainUrl=";
+var couponId = 0;
 var id=0;
+var userId = 0;
 var cashbackPercentage = 0;
 
 
- // setTimeout(function(){
+  setTimeout(function(){
+var link=getTabUrl();
 
 
-  
+var newDiv;
+var exist=chkMarchent(link);
 
-$( document ).ready(function() {
-  
-  safari.self.tab.dispatchMessage('getuserIdChckboxActivated',id);
-});
+if(exist !== 0  )
+{
+  newDiv = $('<div class="extension-container dark-theme-activates" > <div  class="wrapper_1 z-index main-radius " style="background: #fff;"> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"><img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon-ext.png" class="logo_1"> </div><div class="right-section" style="margin: auto;"> <div class="static-box" id="AvailableDiv"><a id = "availble-noti" href="javascript:;"  class="cash-back-btn latter">Get Up to '+exist+'% Cash Back</a><a id= "later" href="javascript:;" class="later" > I&#39;ll get it later</a><div></div></div> <div class="extension-container hideDiv dark-theme-activates" id="ActivatedDiv"> <div class="wrapper_1 z-index main-radius "> <img id="close-button" src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/close.svg" class="top-close-btn" /> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"> <img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon-ext.png" class="logo_1"></div><div class="right-section activation-padding">  <div class="activated-cashback">Cash Back Activated</div></div></div></div></div>');
 
+var html= $("html");
 
-function activate() {
-  
-  var link=getTabUrl();
-  var newDiv;
-  var exist=chkMarchent(link);
-  
-  if(exist !== 0  )
+var divExist = localStorage.getItem('chkBox');
+ var login = localStorage.getItem('user');
+ userId = localStorage.getItem('userId');
+ var activated = localStorage.getItem('activated');
+
+if(login!==null)
+{
+if(divExist!== null)
+{
+  if(divExist == 1)
   {
-    newDiv = $('<div class="extension-container dark-theme-activates" > <div  class="wrapper_1 z-index main-radius " style="background: #fff;"> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"><img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"> </div><div class="right-section" style="margin: auto;"> <div class="static-box" id="AvailableDiv"><a id = "availble-noti" href="javascript:;"  class="cash-back-btn latter">Get Up to '+exist+'% Cash Back</a><a id= "later" href="javascript:;" class="later" > I&#39;ll get it later</a><div></div></div> <div class="extension-container hideDiv dark-theme-activates" id="ActivatedDiv"> <div class="wrapper_1 z-index main-radius "> <img id="close-button" src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/close.svg" class="top-close-btn" /> <div class="get-up-to-box"> <div class="left-section" style="background: #515256;"> <img src="https://quotientmedia.blob.core.windows.net/quotient-web-assets/images/favicon.png" class="logo_1"></div><div class="right-section activation-padding">  <div class="activated-cashback">Cash Back Activated</div></div></div></div></div>');
-  
-  var html= $("html");
-  
-  var divExist = localStorage.getItem('chkBox');
-  var login = localStorage.getItem('user');
-  userId = localStorage.getItem('userId');
-   var activated = localStorage.getItem('activated');
-  
-  if(login!==null)
-  {
-  if(divExist!== null)
-  {
-    if(divExist == 1)
-    {
-    }
-    else if(divExist == 0) {
-      
-  if(activated=='Cashback Activated')
-  {
-     if(window.top === window)
-    {
+  }
+  else if(divExist == 0) {
     
-    $( "#ActivatedDiv" ).addClass( "showDiv" )
-    $( "#AvailableDiv" ).addClass( "hideDiv" )
-    html.append(newDiv);
-    }
-  }
-  else if (activated == 'Available Coupons')
+if(activated=='Cashback Activated')
+{
+   if(window.top === window)
   {
-    if(window.top === window)
-    {
-    html.append(newDiv);
-      $( "#ActivatedDiv" ).addClass( "hideDiv" )
-    }
-  }
-  
-  }
-  }
+  html.append(newDiv);
+  $( "#ActivatedDiv" ).addClass( "showDiv" )
+  $( "#AvailableDiv" ).addClass( "hideDiv" )
   }
 }
+else if (activated == 'Available Coupons')
+{
+  if(window.top === window)
+  {
+  html.append(newDiv);
+    $( "#ActivatedDiv" ).addClass( "hideDiv" )
+  }
 }
+
+}
+}
+}
+
+
 
 
 
 $("#availble-noti").click(function(){
-localStorage.setItem('activated','Cashback Activated');
 
-safari.self.tab.dispatchMessage('activatedlinks',id);
-$( "#ActivatedDiv" ).addClass( "showDiv" );
- $( "#AvailableDiv" ).addClass( "hideDiv" );
-  newDiv.delay( 2000 ).fadeOut( 1000 );
+  var redirectUrl = "/couponapi/coupons/redirectUrl/plugin?couponId="+couponId+"&consumerId=" +userId;
+  let request =  baseUrl + redirectUrl;
+   let header =  ajaxTokenHandler(redirectUrl,"","PUT");
+  var rUrl = $.ajax({
+    url: request,
+    type: "PUT",
+   async: false,
+     headers: {"X-SIGNATURE": header.signature,
+    "X-TIMESTAMP" : header.timestamp},
+     dataType: 'json'
+     }).responseJSON;
+  
+     if(rUrl.data!=null & rUrl.meta.code==200){
+      localStorage.setItem('activated','Cashback Activated');
+      safari.self.tab.dispatchMessage('activatedlinks',id);
+      // $( "#ActivatedDiv" ).addClass( "showDiv" );
+      //  $( "#AvailableDiv" ).addClass( "hideDiv" );
+      //   newDiv.delay( 2000 ).fadeOut( 1000 );
+    window.open(rUrl.data.redirectUrl);
+     }
 });
 
 
@@ -89,12 +93,9 @@ $("#close-button").click(function(){
     
 });
 
-$("#later").click(function(){
-  console.log("clicked");
-  newDiv.remove();
-});
 
-//},500);
+}
+ },3500);
 
 
 
@@ -118,7 +119,7 @@ function getTabUrl(){
 function chkMarchent(name){
    ;
   let request =  baseUrl +isUsUserUrl;
-   let header =  ajaxTokenHandler(isUsUserUrl,"");
+   let header =  ajaxTokenHandler(isUsUserUrl,"","GET");
   var isus = $.ajax({
     url: request,
    async: false,
@@ -137,7 +138,7 @@ function chkMarchent(name){
     if (isUsUser == "true") {
       
       let request =  baseUrl +domainUrl+name;
-      let header =  ajaxTokenHandler(domainUrl,name);
+      let header =  ajaxTokenHandler(domainUrl,name,"GET");
       var d = $.ajax({
         url: request,
         headers: {"X-SIGNATURE": header.signature,
@@ -149,7 +150,9 @@ function chkMarchent(name){
       if(d.data!=null & d.meta.code==200){
         if (d.data[0].cashbackPercentage !== null) {
       cashbackPercentage=d.data[0].cashbackPercentage;
-      id = d.data[0].merchantId}
+      id = d.data[0].merchantId;
+    couponId = d.data[0].id;
+    }
       }
       else
       {
@@ -207,8 +210,8 @@ function chkMarchent(name){
   } 
 
 
-  function ajaxTokenHandler(url,param){
-    var method = "GET";
+  function ajaxTokenHandler(url,param,method){
+    var method = method;
     var API_SECRET="ZnUzcDFtc1RWOHR5aUNON0Z3QjJtV2dyblVwSzRkNlhoekh2Y1JhdUVzRzNaZURYZEs1WWIyUlo="
     var uri =  url+param;
     var ts = Math.round(new Date().getTime() / 1000);
@@ -242,32 +245,38 @@ localStorage.setItem('chkBox',1);
 }
 else if(msgEvent.name === 'logout')
 {
-  localStorage.removeItem('userid');
+  localStorage.removeItem('user');
+  localStorage.removeItem('userId');
   localStorage.removeItem('activated');
 }
-else if(msgEvent.name === 'userid')
+else if(msgEvent.name === 'user')
 {
  
   if(msgEvent.message !==null)
   {
-  localStorage.setItem('userid',msgEvent.message);
+  localStorage.setItem('user',msgEvent.message);
+  }
+}
+else if(msgEvent.name === 'userId')
+{
+ 
+  if(msgEvent.message !==null)
+  {
+  localStorage.setItem('userId',msgEvent.message);
   }
 }
 else if(msgEvent.name === 'activated')
 { 
- localStorage.setItem('activated','Cashback Activated');
- activate();
+
+    localStorage.setItem('activated','Cashback Activated');
+  
 }
 else if(msgEvent.name === 'normal')
 { 
   localStorage.setItem('activated','Available Coupons');
 }
-else if(msgEvent.name === 'getuserIdChckboxActivated')
-{ 
- activate()
-}
+
+
 }
 
-
- }
-
+}

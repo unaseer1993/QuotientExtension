@@ -23,95 +23,19 @@ class App extends React.Component {
     var result;
     var merchantID;
     let chkResult;
-    var chkboxvalue = localStorage.getItem("chkbox");
-    const currentUnixTimeStamp = Math.round((new Date()).getTime() / 1000);
-
-   
-
-    if (
-      typeof safari.application.activeBrowserWindow.activeTab.url !==
-      "undefined"
-    ) {
-      if (chkboxvalue !== null) {
-        if (chkboxvalue == 1) {
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-            "message",
-            1
-          );
-        } else {
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-            "message",
-            0
-          );
-        }
-      } else {
-        localStorage.setItem("chkbox", 0);
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-          "message",
-          0
-        );
-      }
-    }
 
     var self = this;
-    if (localStorage.getItem("userStatus") !== null) {
-      if (localStorage.getItem("userStatus") == 1) {
-        if (
-          typeof safari.application.activeBrowserWindow.activeTab.url !==
-          "undefined"
-        ) {
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-            "user",
-            localStorage.getItem("userEmail")
-          );
-          safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-            "userId",
-            localStorage.getItem("userId")
-          );
-        }
+    var userId =localStorage.getItem("userId");
+    if (userId!== null ) {
         result = localStorage.getItem("chk");
         merchantID = localStorage.getItem("id");
-      }
     } else {
       result = 3;
     }
 
     var activatedlinks = [];
 
-    safari.application.addEventListener("message", handleMessage, false );
-    function handleMessage(msg) {
-      if (msg.name === "activatedlinks") {
-        if (localStorage.getItem("activatedlinks") !== null) {
-          activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
-        }
-        if (!activatedlinks.includes(msg.message)) {
-          activatedlinks.push(msg.message);
-        }
-        localStorage.setItem("activatedlinks", JSON.stringify(activatedlinks));
-       // window.location.reload();
-      } else if (msg.name === "chkbox") {
-        if (msg.message === 1) {
-          localStorage.setItem("chkbox", 1);
-        } else if (msg.message === 0) {
-          localStorage.setItem("chkbox", 0);
-        }
-      }
-      /* New Code Added for RND */
-      // else if (msg.name === "getuserIdChckboxActivated") {
-
-
-      //       if (
-      //         typeof safari.application.activeBrowserWindow.activeTab.url !==
-      //         "undefined"
-      //       ) {
-      //         safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-      //           "getuserIdChckboxActivated",
-      //           "id"
-      //         );
-      //       }
-      // }
-       /* New Code Added for RND */
-    }
+  
 
     if (result === "1") {
       chkResult = 1;
@@ -123,11 +47,7 @@ class App extends React.Component {
 
     this.setState({ chk: chkResult}, () => {
     
-      if (self.state.chk == 2) {
-        var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
-        safari.extension.toolbarItems[0].image = iconUri;
-     
-      
+      if (self.state.chk == 2) {      
         CouponService.fetchCashbackCoupons(0)
           .then(res => {
             const coupons = res.data.data.content;
@@ -145,24 +65,17 @@ class App extends React.Component {
           });
 
       } else if (self.state.chk == 1) {
-        var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
-        safari.extension.toolbarItems[0].image = iconUri;
-CouponService.fetchMaxCashBackCouponByMercahat(merchantID)
-.then(res => {
-if(res.data.data.cashbackPercentage !== undefined)
-{
-this.setState({activated:res.data.data.cashbackPercentage,
-  couponId:res.data.data.id
-});
-}
-else
-{
-
-}
-
-}).catch(error => {
-this.setState({activated:0});
-});
+        CouponService.fetchMaxCashBackCouponByMercahat(merchantID)
+        .then(res => {
+        if(res.data.data.cashbackPercentage !== undefined)
+        {
+        this.setState({activated:res.data.data.cashbackPercentage,
+          couponId:res.data.data.id
+        });
+      }
+        }).catch(error => {
+        this.setState({activated:0});
+        });
         this.setState({ id: merchantID }, () => {
           self.setState({ id: merchantID });
             CouponService.fetchCouponsByMerchants(0,self.state.id)
@@ -181,13 +94,7 @@ this.setState({activated:0});
               self.setState({ coupons: JSON.parse(couponsdata) });
             });
         });
-      } else {
-        {
-        
-          var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
-          safari.extension.toolbarItems[0].image = iconUri;
-        }
-      }
+      } 
     });
 
 

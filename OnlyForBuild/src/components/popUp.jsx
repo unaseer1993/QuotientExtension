@@ -68,7 +68,7 @@ class PopUp extends React.Component {
         if(localStorage.getItem('userId') !== null) {
           this.setState ({cbId :localStorage.getItem('userId') });
         }
-        activateLink(Merchantid)
+        activateLink(Number(Merchantid))
         }
           
           CouponService.fetchRedirectURl(couponId,this.state.cbId)
@@ -155,73 +155,57 @@ class PopUp extends React.Component {
 var activated = this.state.activated;
 const couponId = this.state.couponId;
 
-    if(this.state.usUser === "true") {
-        if(activated !== 0)
-          {
-              activated = "Activate " +activated +"% Cashback";
-          }
-        else if (activated == 0)  
-          {
-              activated = "Available Coupons"
-          }
-        else
-          {
-              activated = "Loading...";
-          }
-    }
-    else {
-      activated = "Available Coupons"
-    }
+    
 
     if (chk === 1) {
       if (!coupons) {
         return [<Fragment>{!coupons && <Error />}</Fragment>];
       } else {
-   
+        
         if (
           typeof safari.application.activeBrowserWindow.activeTab.url !==
           "undefined"
         ) {
-          
-          var activatedlinks = [];
-          if (localStorage.getItem("activatedlinks") !== null) {
-            activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
-            var actiii = false;
-            for (var i = 0; i < activatedlinks.length; i++) {
-              if (activatedlinks[i] == id) {
-             activated = "Cashback Activated";
-                var iconUri =
-                  safari.extension.baseURI + "Icons/icon-activated@2x.png";
+          if(this.state.usUser === "true") {
+            if(activated !== 0)
+              {
+                  activated = "Activate " +activated +"% Cashback";
+                  var activatedlinks = [];
+                  if (localStorage.getItem("activatedlinks") !== null) {
+                    activatedlinks = JSON.parse(localStorage.getItem("activatedlinks"));
+                    var actiii = false;
+                    for (var i = 0; i < activatedlinks.length; i++) {
+                      if (activatedlinks[i] == id) {
+                        var iconUri = safari.extension.baseURI + "Icons/icon-activated@2x.png";
+                        safari.extension.toolbarItems[0].image = iconUri;
+                     activated = "Cashback Activated";
+                        actiii = true;
+                        break;
+                      }
+                      if(!actiii) {
+                        var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
                 safari.extension.toolbarItems[0].image = iconUri;
-                safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-                  "activated",
-                  id
-                );
-                actiii = true;
-                break;
+                      }
+                    }
+                  }
               }
-            }
-            if (!actiii) {
-
-              var iconUri =
-                safari.extension.baseURI + "Icons/icon-available@2x.png";
-              safari.extension.toolbarItems[0].image = iconUri;
+            else if (activated == 0)  
+              {
+                  activated = "Available Coupons"
+              }
+            else
+              {
+                  activated = "Loading...";
+              }
            
-              safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-                "normal",
-                id
-              );
-            }
-          } else {
-            var iconUri =
-              safari.extension.baseURI + "Icons/icon-available@2x.png";
-            safari.extension.toolbarItems[0].image = iconUri;
-         
-            safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-              "normal",
-              id
-            );
-          }
+            
+       
+        }
+        else {
+          var iconUri = safari.extension.baseURI + "Icons/icon-available@2x.png";
+          safari.extension.toolbarItems[0].image = iconUri;
+          activated = "Available Coupons"
+        }
         }
 
         return [
@@ -262,15 +246,8 @@ const couponId = this.state.couponId;
         ];
       }
     } else if (chk === 2) {
-      if (
-        typeof safari.application.activeBrowserWindow.activeTab.url !==
-        "undefined"
-      ) {
-      safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-        "normal",
-        id
-      );
-      }
+      var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
+      safari.extension.toolbarItems[0].image = iconUri;
       if (!coupons) {
         return [!coupons && <Error />];
       } else {
@@ -293,8 +270,7 @@ const couponId = this.state.couponId;
         loadMore={this.fetchMoreDeals}
         hasMore={!last}
         loader={!isLoading && <div className="loader" key={0}>Loading ...</div>}
-        useWindow={false}
-    >
+        useWindow={false}>
      
  
               <Items coupons={coupons}/>
@@ -305,15 +281,8 @@ const couponId = this.state.couponId;
         ];
       }
     } else if (chk === 3) {
-      if (
-        typeof safari.application.activeBrowserWindow.activeTab.url !==
-        "undefined"
-      ) {
-        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(
-          "logout",
-          "logout"
-        );
-      }
+      var iconUri = safari.extension.baseURI + "Icons/icon@2x.png";
+      safari.extension.toolbarItems[0].image = iconUri;
       return [<LogoHeader src="images/logo.png"/>, <Login />, <Footer />];
     }
   }

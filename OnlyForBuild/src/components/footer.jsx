@@ -17,7 +17,7 @@ class Footer extends React.Component {
     }
      componentWillMount() 
      {
-         var logout = localStorage.getItem('userEmail');
+         var logout = localStorage.getItem('userId');
          if(logout==null)
          {
 this.setState({ islogout : true})
@@ -48,15 +48,16 @@ this.setState({ islogout : true})
         }
         signout()
         {
-             safari.self.hide();
-                 localStorage.removeItem('a');
-          localStorage.removeItem('b');
-          localStorage.removeItem('redirected');
-          localStorage.removeItem('chk');
-          localStorage.removeItem('id');
-          localStorage.removeItem('stack');
-          localStorage.removeItem('userEmail');
-        localStorage.setItem('userStatus',0);
+         //   alert("signout")
+        safari.self.hide();
+        localStorage.removeItem('a');
+        localStorage.removeItem('b');
+        localStorage.removeItem('redirected');
+        localStorage.removeItem('chk');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userStatus');
+        localStorage.removeItem('id');
+        localStorage.removeItem('stack');
         localStorage.removeItem('activated');
         localStorage.removeItem('activatedlinks');
         var newURL = BASE_URL;

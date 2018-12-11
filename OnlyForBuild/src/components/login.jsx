@@ -91,8 +91,6 @@ validateEmail(email)
             isloading: false
           });
           localStorage.removeItem("stack");
-          localStorage.setItem("userStatus",1);
-          localStorage.setItem("userEmail",response.data.email);
            localStorage.setItem("userId",response.data.cbId);
           window.location.reload()
 
